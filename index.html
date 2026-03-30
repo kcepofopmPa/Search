@@ -401,15 +401,55 @@ const MAKERS_KR = {
   bmw:'BMW', mercedes:'벤츠', audi:'아우디', lexus:'렉서스',
   toyota:'도요타', porsche:'포르쉐', volvo:'볼보',
 };
-const MODELS_KR = {
-  hyundai:[['santafe','싼타페'],['palisade','팰리세이드'],['tucson','투싼'],
-           ['sonata','쏘나타'],['grandeur','그랜저'],['ioniq5','아이오닉 5'],
-           ['ioniq6','아이오닉 6'],['kona','코나']],
-  kia:    [['sportage','스포티지'],['sorento','쏘렌토'],['carnival','카니발'],
-           ['k5','K5'],['k8','K8'],['ev6','EV6']],
-  genesis:[['gv60','GV60'],['gv70','GV70'],['gv80','GV80'],['g80','G80'],['g90','G90']],
-  ssangyong:[],bmw:[],mercedes:[],audi:[],lexus:[],toyota:[],porsche:[],volvo:[],
+// ModelGroup — точные имена из Encar API для вложенного C. запроса
+// Формат: { makerKey: [ [uiKey, modelGroupName, displayName] ] }
+const MODELGROUPS = {
+  hyundai:[
+    ['santafe',  '싼타페',   'Santa Fe'],
+    ['palisade', '팰리세이드', 'Palisade'],
+    ['tucson',   '투싼',    'Tucson'],
+    ['sonata',   '쏘나타',   'Sonata'],
+    ['grandeur', '그랜저',   'Grandeur'],
+    ['ioniq5',   '아이오닉 5','IONIQ 5'],
+    ['ioniq6',   '아이오닉 6','IONIQ 6'],
+    ['kona',     '코나',     'Kona'],
+    ['staria',   '스타리아',  'Staria'],
+  ],
+  kia:[
+    ['sportage', '스포티지',  'Sportage'],
+    ['sorento',  '쏘렌토',   'Sorento'],
+    ['carnival', '카니발',   'Carnival'],
+    ['k5',       'K5',       'K5'],
+    ['k8',       'K8',       'K8'],
+    ['ev6',      'EV6',      'EV6'],
+    ['ev9',      'EV9',      'EV9'],
+    ['niro',     '니로',     'Niro'],
+  ],
+  genesis:[
+    ['gv60', 'GV60', 'GV60'],
+    ['gv70', 'GV70', 'GV70'],
+    ['gv80', 'GV80', 'GV80'],
+    ['g70',  'G70',  'G70'],
+    ['g80',  'G80',  'G80'],
+    ['g90',  'G90',  'G90'],
+  ],
+  ssangyong:[
+    ['torres',  '토레스',  'Torres'],
+    ['rexton',  '렉스턴',  'Rexton'],
+    ['tivoli',  '티볼리',  'Tivoli'],
+  ],
+  bmw:[],mercedes:[],audi:[],lexus:[],toyota:[],porsche:[],volvo:[],
 };
+
+// Обратный индекс для AI поиска: по ModelGroup имени → {maker, modelGroup}
+const MODELGROUP_INDEX = {};
+Object.entries(MODELGROUPS).forEach(([maker, models]) => {
+  models.forEach(([key, mg, display]) => {
+    MODELGROUP_INDEX[key]     = { maker, modelGroup: mg, display };
+    MODELGROUP_INDEX[mg]      = { maker, modelGroup: mg, display };
+    MODELGROUP_INDEX[display.toLowerCase()] = { maker, modelGroup: mg, display };
+  });
+});
 const FUEL_RU = {'가솔린':'Бензин','디젤':'Дизель','전기':'Электро','가솔린+전기':'Гибрид','LPG':'LPG'};
 
 let CFG = { key:'', folder:'', count:30, usd:90, krw:0.0675 };
@@ -489,10 +529,12 @@ function setMode(m){
 // setMkt removed — car_type auto-detected from manufacturer
 
 function onMakerChange(){
-  const mk=document.getElementById('fMaker').value;
-  const ms=document.getElementById('fModel');
-  ms.innerHTML='<option value="">Все</option>';
-  (MODELS_KR[mk]||[]).forEach(([k,kr])=>ms.innerHTML+=`<option value="${k}">${kr}</option>`);
+  const mk = document.getElementById('fMaker').value;
+  const ms = document.getElementById('fModel');
+  ms.innerHTML = '<option value="">Все модели</option>';
+  (MODELGROUPS[mk]||[]).forEach(([key, mg, display]) => {
+    ms.innerHTML += `<option value="${key}">${display} (${mg})</option>`;
+  });
 }
 let _toast;
 function toast(msg,ms=2000){
@@ -526,21 +568,22 @@ async function runAI(){
 }
 
 async function parseNL(q){
-  const prompt=`Распарси поисковый запрос автомобиля. Верни ТОЛЬКО JSON без пояснений.
+  const prompt=`Распарси запрос на поиск автомобиля. Верни ТОЛЬКО JSON без пояснений и markdown.
 Запрос: "${q}"
-Поля JSON (все необязательные):
+
+Верни JSON (только нужные поля):
 {
-  "car_type": "korean" или "foreign",
-  "manufacturer": ключ из [hyundai,kia,genesis,ssangyong,bmw,mercedes,audi,lexus,toyota,porsche,volvo],
-  "model_kr": корейское название модели (싼타페, 팰리세이드, 스포티지 и тд),
-  "year_from": число YYYY,
-  "year_to": число YYYY,
-  "mileage_max": число км,
-  "price_max_manwon": цена в 만원 (1USD≈1340KRW, 1만원=10000KRW),
+  "car_type": "korean" если корейский бренд (Hyundai/Kia/Genesis), иначе "foreign",
+  "manufacturer": один из [hyundai, kia, genesis, ssangyong, bmw, mercedes, audi, lexus, toyota, porsche, volvo],
+  "model_group": ModelGroup из Encar — ТОЧНОЕ имя: EV6, EV9, GV60, GV70, GV80, G70, G80, G90, K5, K8, 싼타페, 팰리세이드, 투싼, 쏘나타, 그랜저, 스포티지, 쏘렌토, 카니발, 니로, 아이오닉 5, 아이오닉 6, 코나, 스타리아, 토레스, 렉스턴, 티볼리,
+  "year_from": YYYY,
+  "year_to": YYYY,
+  "mileage_max": число км (например 35000),
+  "price_max_manwon": цена в 만원 = price_USD * 1340 / 10000,
   "price_min_manwon": число,
-  "fuel": "가솔린" или "디젤" или "전기" или "가솔린+전기"
+  "fuel": "가솔린" бензин | "디젤" дизель | "전기" электро | "가솔린+전기" гибрид
 }
-Только JSON.`;
+Только JSON, без текста.`;
   const body=JSON.stringify({
     modelUri:`gpt://${CFG.folder}/yandexgpt-lite`,
     completionOptions:{temperature:0.1,maxTokens:250},
@@ -563,7 +606,7 @@ function showParsed(p){
   const map={
     'Рынок':       p.car_type==='korean'?'🇰🇷 Внутренний':'🌍 Иностранный',
     'Марка':       p.manufacturer||null,
-    'Модель':      p.model_kr||null,
+    'Модель':      p.model_group||null,
     'Год':         p.year_from&&p.year_to?`${p.year_from}–${p.year_to}`:(p.year_from||p.year_to||null),
     'Пробег':      p.mileage_max?`до ${p.mileage_max.toLocaleString()} км`:null,
     'Цена':        p.price_max_manwon?`до $${Math.round(p.price_max_manwon*10000/1340).toLocaleString()}`:null,
@@ -582,19 +625,22 @@ function showParsed(p){
 // ══════════════════════════════════════════════════════════
 function runSearch(){
   if(STATE.mode==='ai'){runAI();return;}
-  const mk    = document.getElementById('fMaker').value;
-  const mdl   = document.getElementById('fModel').value;
-  let model_kr='';
-  if(mdl&&mk&&MODELS_KR[mk]){
-    const f=MODELS_KR[mk].find(([k])=>k===mdl);
-    if(f) model_kr=f[1];
+  const mk  = document.getElementById('fMaker').value;
+  const mdl = document.getElementById('fModel').value;
+
+  // Находим ModelGroup для выбранной модели
+  let model_group = '';
+  if(mdl && mk && MODELGROUPS[mk]){
+    const found = MODELGROUPS[mk].find(([key]) => key === mdl);
+    if(found) model_group = found[1]; // Korean ModelGroup name
   }
-  const pMin=parseInt(document.getElementById('fPMin').value||0);
-  const pMax=parseInt(document.getElementById('fPMax').value||99999);
-  // car_type определяется автоматически по производителю
+
+  const pMin = parseInt(document.getElementById('fPMin').value||0);
+  const pMax = parseInt(document.getElementById('fPMax').value||99999);
+
   doSearch({
     manufacturer:      mk,
-    model_kr:          model_kr,
+    model_group:       model_group,  // ← ModelGroup для точного API запроса
     year_from:         parseInt(document.getElementById('fYF').value),
     year_to:           parseInt(document.getElementById('fYT').value),
     mileage_max:       parseInt(document.getElementById('fMil').value),
@@ -616,31 +662,40 @@ function getCarType(manufacturer){
 }
 
 function buildQuery(p){
-  // car_type: если явно задан — используем, иначе определяем по марке
   const ct = p.car_type
     ? (p.car_type==='foreign'?'N':'Y')
     : getCarType(p.manufacturer||'');
 
-  const yf  = p.year_from||2015;
-  const yt  = p.year_to||2026;
-  const mil = p.mileage_max||300000;
-  const pMn = p.price_min_manwon||100;
-  const pMx = p.price_max_manwon||99000;
+  const yf  = p.year_from  || 2015;
+  const yt  = p.year_to    || 2026;
+  const mil = p.mileage_max|| 300000;
+  const pMn = p.price_min_manwon || 100;
+  const pMx = p.price_max_manwon || 99000;
 
-  const filters=[
+  // Базовые фильтры (не зависят от марки/модели)
+  const base = [
     `And.Year.range(${yf}01..${yt}12).`,
     `_.Mileage.range(0..${mil}).`,
     `_.Price.range(${pMn}..${pMx}).`,
     `_.Hidden.N.`,
-    `_.CarType.${ct}.`,
   ];
 
-  // Производитель — плоская структура (работает надёжно)
-  if(p.manufacturer && MAKERS_KR[p.manufacturer]){
-    filters.push(`_.Manufacturer.${MAKERS_KR[p.manufacturer]}.`);
+  const makerKr = p.manufacturer ? MAKERS_KR[p.manufacturer] : null;
+  const mg      = p.model_group;   // ModelGroup из Encar (싼타페, EV6 и тд)
+
+  if(makerKr && mg){
+    // Точный поиск: вложенный C. с MarkerGroup — как на сайте Encar
+    // (And...._.(C.CarType.Y._.(C.Manufacturer.기아._.ModelGroup.EV6.)))
+    base.push(`_.(C.CarType.${ct}._.(C.Manufacturer.${makerKr}._.ModelGroup.${mg}.))`);
+  } else if(makerKr){
+    // Только марка — плоская структура
+    base.push(`_.CarType.${ct}.`);
+    base.push(`_.Manufacturer.${makerKr}.`);
+  } else {
+    base.push(`_.CarType.${ct}.`);
   }
 
-  return '('+filters.join('')+')';
+  return '(' + base.join('') + ')';
 }
 
 async function fetchPage(q, offset, count){
@@ -694,12 +749,7 @@ async function doSearch(p){
     // Парсим
     let cars = allRaw.map(parseCar);
 
-    // Клиентский фильтр по модели (строковое совпадение)
-    if(p.model_kr){
-      cars = cars.filter(c => c.model.includes(p.model_kr));
-    }
-
-    // Клиентский фильтр по топливу
+    // Клиентский фильтр по топливу (модель уже отфильтрована API через ModelGroup)
     if(p.fuel){
       cars = cars.filter(c => c.fuel === p.fuel);
     }
