@@ -9,5 +9,7 @@ self.addEventListener('activate', e => {
   self.clients.claim();
 });
 self.addEventListener('fetch', e => {
+  // Only handle same-origin requests — don't intercept external images/APIs
+  if(!e.request.url.startsWith(self.location.origin)) return;
   e.respondWith(caches.match(e.request).then(c => c || fetch(e.request).catch(()=>caches.match('/Search/index.html'))));
 });
