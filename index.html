@@ -1690,8 +1690,9 @@ function parseCar(c){
   const photos = [];
   if(photoField){
     const photoBase = 'https://ci.encar.com' + photoField;
-    // Strip trailing underscores + photo number + extension: handles both _001.jpg and __001.jpg
-    const base = photoBase.replace(/_+\d{3}\.jpg.*$/i, '');
+    // Strip photo index + extension, then strip any trailing underscores
+    // API Photo field may end with '_001.jpg', '__001.jpg', or just '_'
+    const base = photoBase.replace(/_+\d{3}\.jpg.*$/i, '').replace(/_+$/, '');
     for(let i=1;i<=8;i++){
       photos.push(`${base}_${String(i).padStart(3,'0')}.jpg?impolicy=heightRate`);
     }
