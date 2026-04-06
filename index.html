@@ -95,7 +95,8 @@ input.fi::placeholder{color:var(--dim)}
 .sl-track{display:flex;height:100%;transition:transform .3s}
 .sl-item{min-width:100%;height:100%}
 .sl-item img{width:100%;height:100%;object-fit:cover}
-.sl-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;color:var(--dim)}
+.sl-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;color:var(--dim);overflow:hidden}
+.sl-ph img{width:100%;height:100%;object-fit:cover;display:block}
 .sl-btn{position:absolute;top:50%;transform:translateY(-50%);width:26px;height:26px;background:rgba(0,0,0,.65);border:none;border-radius:50%;color:#fff;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2}
 .sl-btn.p{left:7px}.sl-btn.n{right:7px}
 .sl-cnt{position:absolute;top:7px;right:7px;background:rgba(0,0,0,.7);color:#fff;font-size:10px;padding:2px 6px;border-radius:8px;z-index:2;font-family:'JetBrains Mono',monospace}
@@ -1688,11 +1689,13 @@ function parseCar(c){
   // Формат: /carpicture/carpicture10/pic1234/12345678_001.jpg
   const photoField = c.Photo || c.photo || null;
   const photos = [];
+  let thumbnail = '';
   if(photoField){
     const photoBase = 'https://ci.encar.com' + photoField;
     // Strip photo index + extension, then strip any trailing underscores
     // API Photo field may end with '_001.jpg', '__001.jpg', or just '_'
     const base = photoBase.replace(/_+\d{3}\.jpg.*$/i, '').replace(/_+$/, '');
+    thumbnail = `${base}_001.jpg?impolicy=heightRate&rh=192&cw=320&ch=192&cg=Center`;
     for(let i=1;i<=8;i++){
       photos.push(`${base}_${String(i).padStart(3,'0')}.jpg?impolicy=heightRate`);
     }
@@ -1732,6 +1735,7 @@ function parseCar(c){
     usd:          Math.round(pmw*10000/1340),
     rub:          Math.round(pmw*10000*(CFG.krw||0.0675)),
     photos:       photos,
+    thumbnail:    thumbnail,
     ai:           '',
   };
 }
@@ -1805,7 +1809,7 @@ function makeCard(c, idx, src){
   div.className='cc'; div.id=`cc-${c.id}`;
   div.innerHTML=`
     <div class="sl" id="sl-${c.id}">
-      <div class="sl-ph" id="slPH-${c.id}">🚗</div>
+      <div class="sl-ph" id="slPH-${c.id}">${c.thumbnail?`<img src="${c.thumbnail}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">`:'🚗'}</div>
       <div class="sl-track" id="slT-${c.id}" style="display:none"></div>
       <button class="sl-btn p" id="slP-${c.id}" onclick="slide('${c.id}',-1)" style="display:none">‹</button>
       <button class="sl-btn n" id="slN-${c.id}" onclick="slide('${c.id}',1)"  style="display:none">›</button>
