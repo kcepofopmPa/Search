@@ -29,9 +29,7 @@ body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--txt
 .hdr{padding:14px 16px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--bg);z-index:100}
 .logo{font-size:17px;font-weight:700;letter-spacing:-0.5px;display:flex;align-items:center;gap:6px}
 .logo-dot{color:var(--accent)}
-.mode-pills{display:flex;background:var(--s2);border-radius:20px;padding:3px;border:1px solid var(--bdr)}
-.pill{padding:5px 14px;border-radius:16px;font-size:11px;font-weight:600;cursor:pointer;border:none;background:none;color:var(--muted);font-family:'Space Grotesk',sans-serif;transition:all .2s}
-.pill.on{background:var(--accent);color:#fff}
+
 
 /* BOTTOM NAV */
 .bnav{position:fixed;bottom:0;left:0;right:0;background:var(--s1);border-top:1px solid var(--bdr);display:flex;z-index:100;padding-bottom:env(safe-area-inset-bottom)}
@@ -46,18 +44,13 @@ body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--txt
 /* ── SEARCH ────────────────────────────────────────────── */
 .sp{padding:14px 16px}
 
-/* AI SEARCH */
-.ai-box{background:var(--s1);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden;margin-bottom:4px}
-.ai-top{padding:10px 14px 0;display:flex;align-items:center;gap:6px}
-.ai-ico{font-size:13px;color:var(--accent)}
-.ai-lbl{font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.8px}
-.ai-ta{width:100%;background:none;border:none;color:var(--txt);font-family:'Space Grotesk',sans-serif;font-size:14px;padding:10px 14px 12px;resize:none;min-height:72px;outline:none;line-height:1.5}
-.ai-ta::placeholder{color:var(--dim)}
-.ai-footer{padding:8px 14px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--bdr)}
-.ai-hint{font-size:10px;color:var(--dim)}
-.ai-go{padding:7px 16px;background:var(--accent);color:#fff;border:none;border-radius:6px;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:opacity .2s}
-.ai-go:active{opacity:.7}
-.ai-go:disabled{opacity:.4;cursor:not-allowed}
+/* AI MINI BAR */
+.ai-mini{display:flex;gap:8px;margin-bottom:10px;background:var(--s1);border:1px solid var(--bdr);border-left:2px solid var(--accent);border-radius:var(--r);padding:9px 12px;align-items:center}
+.ai-mini-ico{color:var(--accent);font-size:14px;flex-shrink:0}
+.ai-mini input{flex:1;background:none;border:none;color:var(--txt);font-family:'Space Grotesk',sans-serif;font-size:13px;outline:none}
+.ai-mini input::placeholder{color:var(--dim)}
+.ai-mini button{padding:6px 14px;background:var(--accent);color:#fff;border:none;border-radius:6px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;cursor:pointer;flex-shrink:0}
+.ai-mini button:disabled{opacity:.4;cursor:not-allowed}
 
 /* PARSED PARAMS */
 .parsed-box{margin-bottom:14px;background:var(--s1);border:1px solid var(--bdr);border-left:2px solid var(--accent);border-radius:var(--rsm);padding:10px 12px;display:none}
@@ -68,13 +61,10 @@ body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--txt
 .pt-k{font-size:10px;color:var(--muted)}
 .pt-v{font-size:10px;color:var(--blue);font-family:'JetBrains Mono',monospace;font-weight:500}
 
-/* OR */
-.or{display:flex;align-items:center;gap:8px;margin:12px 0;color:var(--dim);font-size:10px;font-weight:700}
-.or::before,.or::after{content:'';flex:1;height:1px;background:var(--bdr)}
+
 
 /* STRUCT SEARCH */
-.ss{display:none}
-.ss.on{display:block}
+.ss{display:block}
 /* market row removed */
 
 .fg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -206,10 +196,6 @@ input.fi::placeholder{color:var(--dim)}
 
 <div class="hdr">
   <div class="logo">encar<span class="logo-dot" style="color:var(--accent)">.</span>ai</div>
-  <div class="mode-pills">
-    <button class="pill on" id="pAI" onclick="setMode('ai')">🧠 AI</button>
-    <button class="pill" id="pST" onclick="setMode('struct')">⚙️ Фильтры</button>
-  </div>
 </div>
 
 <div class="bnav">
@@ -225,28 +211,18 @@ input.fi::placeholder{color:var(--dim)}
 <div class="view on" id="vSearch">
 <div class="sp">
 
-  <!-- AI -->
-  <div id="aiWrap">
-    <div class="ai-box">
-      <div class="ai-top">
-        <span class="ai-ico">✦</span>
-        <span class="ai-lbl">AI Поиск</span>
-      </div>
-      <textarea class="ai-ta" id="aiQ" placeholder="Hyundai Santa Fe новый кузов 1.6 гибрид полный привод Prestige 2023 пробег до 35 000 км..."></textarea>
-      <div class="ai-footer">
-        <span class="ai-hint">Опишите любым языком — AI распознает параметры</span>
-        <button class="ai-go" id="aiGoBtn" onclick="runAI()">Найти →</button>
-      </div>
-    </div>
-    <div class="parsed-box" id="parsedBox">
-      <div class="pb-title">✦ Распознано</div>
-      <div class="pb-tags" id="parsedTags"></div>
-    </div>
+  <!-- AI MINI BAR -->
+  <div class="ai-mini">
+    <span class="ai-mini-ico">✦</span>
+    <input type="text" id="aiQ" placeholder="AI: BMW 5 серии 2022, до $40k, дизель...">
+    <button onclick="runAI()" id="aiGoBtn">→</button>
+  </div>
+  <div class="parsed-box" id="parsedBox">
+    <div class="pb-title">✦ Распознано</div>
+    <div class="pb-tags" id="parsedTags"></div>
   </div>
 
-  <div class="or" id="orDiv">или</div>
-
-  <!-- STRUCT -->
+  <!-- FILTERS -->
   <div class="ss" id="stWrap">
 <div class="fg">
       <div>
@@ -557,18 +533,18 @@ const MODELGROUPS = {
     ['mulsanne', 'Mulsanne', 'Mulsanne'],
   ],
   bmw:[
-    ['1series', '1-Series', '1-Series'],
-    ['1m', '1M', '1M'],
-    ['2series', '2-Series', '2-Series'],
-    ['3series', '3-Series', '3-Series'],
-    ['4series', '4-Series', '4-Series'],
-    ['5series', '5-Series', '5-Series'],
-    ['6series', '6-Series', '6-Series'],
-    ['7series', '7-Series', '7-Series'],
-    ['8series', '8-Series', '8-Series'],
-    ['granturismo', 'Gran Turismo', 'Gran Turismo'],
-    ['mcouperoadster', 'M Coupe-Roadster', 'M Coupe-Roadster'],
-    ['mseries', 'M-Series', 'M-Series'],
+    ['1series', '1시리즈', '1 Series'],
+    ['1m', '1M쿠페', '1M Coupe'],
+    ['2series', '2시리즈', '2 Series'],
+    ['3series', '3시리즈', '3 Series'],
+    ['4series', '4시리즈', '4 Series'],
+    ['5series', '5시리즈', '5 Series'],
+    ['6series', '6시리즈', '6 Series'],
+    ['7series', '7시리즈', '7 Series'],
+    ['8series', '8시리즈', '8 Series'],
+    ['granturismo', '그란 투리스모', 'Gran Turismo'],
+    ['mcouperoadster', 'M쿠페-로드스터', 'M Coupe-Roadster'],
+    ['mseries', 'M시리즈', 'M Series'],
     ['m2', 'M2', 'M2'],
     ['m3', 'M3', 'M3'],
     ['m4', 'M4', 'M4'],
@@ -986,33 +962,36 @@ const MODELGROUPS = {
   ],
   mercedes:[
     ['190class', '190-Class', '190-Class'],
-    ['aclass', 'A-Class', 'A-Class'],
+    ['aclass', 'A클래스', 'A-Class'],
     ['amggt', 'AMG GT', 'AMG GT'],
-    ['cclass', 'C-Class', 'C-Class'],
-    ['clclass', 'CL-Class', 'CL-Class'],
-    ['claclass', 'CLA-Class', 'CLA-Class'],
-    ['clkclass', 'CLK-Class', 'CLK-Class'],
-    ['clsclass', 'CLS-Class', 'CLS-Class'],
-    ['eclass', 'E-Class', 'E-Class'],
-    ['gclass', 'G-Class', 'G-Class'],
-    ['glclass', 'GL-Class', 'GL-Class'],
-    ['glaclass', 'GLA-Class', 'GLA-Class'],
-    ['glcclass', 'GLC-Class', 'GLC-Class'],
-    ['gleclass', 'GLE-Class', 'GLE-Class'],
-    ['glkclass', 'GLK-Class', 'GLK-Class'],
-    ['glsclass', 'GLS-Class', 'GLS-Class'],
-    ['mclass', 'M-class', 'M-class'],
-    ['myb', 'My B', 'My B'],
-    ['rclass', 'R-Class', 'R-Class'],
-    ['sclass', 'S-Class', 'S-Class'],
+    ['cclass', 'C클래스', 'C-Class'],
+    ['clclass', 'CL', 'CL-Class'],
+    ['claclass', 'CLA', 'CLA-Class'],
+    ['clkclass', 'CLK', 'CLK-Class'],
+    ['clsclass', 'CLS', 'CLS-Class'],
+    ['eclass', 'E클래스', 'E-Class'],
+    ['gclass', 'G클래스', 'G-Class'],
+    ['glclass', 'GL', 'GL-Class'],
+    ['glaclass', 'GLA', 'GLA-Class'],
+    ['glbclass', 'GLB', 'GLB-Class'],
+    ['glcclass', 'GLC', 'GLC-Class'],
+    ['gleclass', 'GLE', 'GLE-Class'],
+    ['glkclass', 'GLK', 'GLK-Class'],
+    ['glsclass', 'GLS', 'GLS-Class'],
+    ['mclass', 'M클래스', 'M-Class'],
+    ['rclass', 'R클래스', 'R-Class'],
+    ['sclass', 'S클래스', 'S-Class'],
     ['selsec', 'SEL-SEC', 'SEL-SEC'],
-    ['slclass', 'SL-Class', 'SL-Class'],
-    ['slcclass', 'SLC-Class', 'SLC-Class'],
-    ['slkclass', 'SLK-Class', 'SLK-Class'],
+    ['slclass', 'SL', 'SL-Class'],
+    ['slcclass', 'SLC', 'SLC-Class'],
+    ['slkclass', 'SLK', 'SLK-Class'],
     ['slr', 'SLR', 'SLR'],
     ['slsamg', 'SLS AMG', 'SLS AMG'],
     ['sprinter', 'Sprinter', 'Sprinter'],
-    ['vclass', 'V-Class', 'V-Class'],
+    ['vclass', 'V클래스', 'V-Class'],
+    ['eqc', 'EQC', 'EQC'],
+    ['eqe', 'EQE', 'EQE'],
+    ['eqs', 'EQS', 'EQS'],
   ],
   mini:[
     ['clubman', 'Clubman', 'Clubman'],
@@ -1328,15 +1307,7 @@ function goView(v){
   window.scrollTo(0,0);
   if(v==='favs') renderFavs();
 }
-function setMode(m){
-  STATE.mode=m;
-  document.getElementById('pAI').classList.toggle('on', m==='ai');
-  document.getElementById('pST').classList.toggle('on', m==='struct');
-  document.getElementById('aiWrap').style.display  = m==='ai'?'block':'none';
-  document.getElementById('orDiv').style.display   = 'none';
-  document.getElementById('stWrap').classList.toggle('on', m==='struct');
-}
-// setMkt removed — car_type auto-detected from manufacturer
+// setMode removed — single unified search page
 
 function onMakerChange(){
   const mk = document.getElementById('fMaker').value;
@@ -1383,15 +1354,16 @@ async function runAI(){
   if(!q){toast('Введите запрос');return;}
   if(!CFG.key||!CFG.folder){toast('⚙️ Укажите API ключи в Настройках');goView('settings');return;}
   const btn=document.getElementById('aiGoBtn');
-  btn.disabled=true; btn.textContent='...';
+  btn.disabled=true; btn.textContent='…';
   document.getElementById('parsedBox').classList.remove('on');
   try{
     const p=await parseNL(q);
     if(!p){toast('Не удалось распознать запрос');return;}
+    fillFormFromParams(p);
     showParsed(p);
     await doSearch(p);
   }catch(e){toast('❌ '+e.message);}
-  finally{btn.disabled=false;btn.textContent='Найти →';}
+  finally{btn.disabled=false;btn.textContent='→';}
 }
 
 async function parseNL(q){
@@ -1432,6 +1404,45 @@ async function parseNL(q){
   return JSON.parse(m[0]);
 }
 
+
+// ══════════════════════════════════════════════════════════
+//  FILL FORM FROM AI PARAMS
+// ══════════════════════════════════════════════════════════
+function fillFormFromParams(p){
+  // Марка
+  const makerSel = document.getElementById('fMaker');
+  if(p.manufacturer && makerSel.querySelector(`option[value="${p.manufacturer}"]`)){
+    makerSel.value = p.manufacturer;
+    onMakerChange(); // populate models dropdown
+    // Модель — найти по model_group (Korean name)
+    if(p.model_group){
+      const modelSel = document.getElementById('fModel');
+      const entries = MODELGROUPS[p.manufacturer] || [];
+      const entry = entries.find(([,mg]) => mg === p.model_group);
+      if(entry) modelSel.value = entry[0];
+    }
+  }
+  // Год
+  if(p.year_from){ document.getElementById('fYF').value = p.year_from; }
+  if(p.year_to)  { document.getElementById('fYT').value = p.year_to; }
+  // Пробег
+  if(p.mileage_max){
+    const milSel = document.getElementById('fMil');
+    const vals = [30000,50000,80000,100000,150000,200000,300000];
+    const best = vals.find(v => v >= p.mileage_max) || 300000;
+    milSel.value = best;
+  }
+  // Цена
+  if(p.price_max_manwon){
+    document.getElementById('fPMax').value = Math.round(p.price_max_manwon * 10000 / 1340);
+  }
+  if(p.price_min_manwon){
+    document.getElementById('fPMin').value = Math.round(p.price_min_manwon * 10000 / 1340);
+  }
+  // Топливо
+  if(p.fuel){ document.getElementById('fFuel').value = p.fuel; }
+}
+
 function showParsed(p){
   const map={
     'Рынок':       p.car_type==='korean'?'🇰🇷 Внутренний':'🌍 Иностранный',
@@ -1454,7 +1465,6 @@ function showParsed(p){
 //  STRUCTURED SEARCH
 // ══════════════════════════════════════════════════════════
 function runSearch(){
-  if(STATE.mode==='ai'){runAI();return;}
   const mk  = document.getElementById('fMaker').value;
   const mdl = document.getElementById('fModel').value;
 
@@ -1683,7 +1693,8 @@ function parseCar(c){
     // Убираем номер и расширение из конца, генерируем 1-8
     const base = photoBase.replace(/_\d{3}\.jpg.*$/i, '');
     for(let i=1;i<=8;i++){
-      photos.push(`${base}_${String(i).padStart(3,'0')}.jpg`);
+      const raw=`${base}_${String(i).padStart(3,'0')}.jpg`;
+      photos.push(`https://wsrv.nl/?url=${raw.replace('https://','')}`);
     }
   }
   // Тип привода из BadgeDetail или Badge
@@ -1869,7 +1880,8 @@ async function loadPhotos(id){
     const baseUrl = `https://ci.encar.com/carpicture/carpicture10/pic${picFolder}`;
     const photos = [];
     for(let i=1;i<=8;i++){
-      photos.push(`${baseUrl}/${id}_${String(i).padStart(3,'0')}.jpg`);
+      const raw=`${baseUrl}/${id}_${String(i).padStart(3,'0')}.jpg`;
+      photos.push(`https://wsrv.nl/?url=${raw.replace('https://','')}`);
     }
     PHOTOS[id] = { idx:0, list: photos };
     renderPhotos(id, photos);
@@ -1883,7 +1895,7 @@ function renderPhotos(id,photos){
   const track=document.getElementById(`slT-${id}`);
   const dots =document.getElementById(`slD-${id}`);
   document.getElementById(`slPH-${id}`).style.display='none';
-  track.innerHTML=photos.map(u=>`<div class="sl-item"><img src="${u}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.style.background='var(--s2)';this.style.display='none'"></div>`).join('');
+  track.innerHTML=photos.map(u=>`<div class="sl-item"><img src="${u}" loading="lazy" onerror="this.parentElement.style.background='var(--s2)';this.style.display='none'"></div>`).join('');
   dots.innerHTML =photos.map((_,i)=>`<div class="sd ${i===0?'on':''}" id="sd-${id}-${i}"></div>`).join('');
   track.style.display='flex';
   track.style.transform='translateX(0)';
