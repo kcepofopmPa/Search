@@ -1690,10 +1690,10 @@ function parseCar(c){
   const photos = [];
   if(photoField){
     const photoBase = 'https://ci.encar.com' + photoField;
-    // Убираем номер и расширение из конца, генерируем 1-8
-    const base = photoBase.replace(/_\d{3}\.jpg.*$/i, '');
+    // Strip trailing underscores + photo number + extension: handles both _001.jpg and __001.jpg
+    const base = photoBase.replace(/_+\d{3}\.jpg.*$/i, '');
     for(let i=1;i<=8;i++){
-      photos.push(`${base}_${String(i).padStart(3,'0')}.jpg`);
+      photos.push(`${base}_${String(i).padStart(3,'0')}.jpg?impolicy=heightRate`);
     }
   }
   // Тип привода из BadgeDetail или Badge
