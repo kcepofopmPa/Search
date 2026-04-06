@@ -1693,8 +1693,7 @@ function parseCar(c){
     // Убираем номер и расширение из конца, генерируем 1-8
     const base = photoBase.replace(/_\d{3}\.jpg.*$/i, '');
     for(let i=1;i<=8;i++){
-      const raw=`${base}_${String(i).padStart(3,'0')}.jpg`;
-      photos.push(`https://wsrv.nl/?url=${raw}&referer=https://www.encar.com`);
+      photos.push(`${base}_${String(i).padStart(3,'0')}.jpg`);
     }
   }
   // Тип привода из BadgeDetail или Badge
@@ -1880,8 +1879,7 @@ async function loadPhotos(id){
     const baseUrl = `https://ci.encar.com/carpicture/carpicture10/pic${picFolder}`;
     const photos = [];
     for(let i=1;i<=8;i++){
-      const raw=`${baseUrl}/${id}_${String(i).padStart(3,'0')}.jpg`;
-      photos.push(`https://wsrv.nl/?url=${raw}&referer=https://www.encar.com`);
+      photos.push(`${baseUrl}/${id}_${String(i).padStart(3,'0')}.jpg`);
     }
     PHOTOS[id] = { idx:0, list: photos };
     renderPhotos(id, photos);
@@ -1895,7 +1893,7 @@ function renderPhotos(id,photos){
   const track=document.getElementById(`slT-${id}`);
   const dots =document.getElementById(`slD-${id}`);
   document.getElementById(`slPH-${id}`).style.display='none';
-  track.innerHTML=photos.map(u=>`<div class="sl-item"><img src="${u}" loading="lazy" onerror="this.parentElement.style.background='var(--s2)';this.style.display='none'"></div>`).join('');
+  track.innerHTML=photos.map(u=>`<div class="sl-item"><img src="${u}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.style.background='var(--s2)';this.style.display='none'"></div>`).join('');
   dots.innerHTML =photos.map((_,i)=>`<div class="sd ${i===0?'on':''}" id="sd-${id}-${i}"></div>`).join('');
   track.style.display='flex';
   track.style.transform='translateX(0)';
