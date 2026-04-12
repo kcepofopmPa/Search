@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Velocity - Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#0e0e0e",
+                        "surface-container-high": "#1f2020",
+                        "primary": "#ff9159",
+                        "outline-variant": "#484848",
+                        "on-primary-container": "#401500",
+                        "primary-dim": "#ff7524",
+                        "secondary-fixed-dim": "#a8c4ff",
+                        "tertiary-dim": "#e48fed",
+                        "on-secondary-container": "#f7f7ff",
+                        "on-primary": "#531e00",
+                        "on-tertiary-fixed-variant": "#6a1f77",
+                        "secondary-dim": "#0070ea",
+                        "surface-container-low": "#131313",
+                        "tertiary-fixed": "#f39cfb",
+                        "inverse-surface": "#fcf9f8",
+                        "error-container": "#9f0519",
+                        "tertiary": "#fab0ff",
+                        "secondary-container": "#005bc0",
+                        "secondary-fixed": "#bed2ff",
+                        "surface-container": "#191a1a",
+                        "surface-variant": "#262626",
+                        "on-surface-variant": "#adaaaa",
+                        "tertiary-container": "#f39cfb",
+                        "on-surface": "#ffffff",
+                        "surface-container-highest": "#262626",
+                        "tertiary-fixed-dim": "#e48fed",
+                        "on-primary-fixed": "#000000",
+                        "inverse-primary": "#a14100",
+                        "on-tertiary-fixed": "#41004d",
+                        "background": "#0e0e0e",
+                        "inverse-on-surface": "#565555",
+                        "on-error": "#490006",
+                        "primary-fixed": "#ff7a2f",
+                        "outline": "#767575",
+                        "surface-dim": "#0e0e0e",
+                        "on-tertiary": "#6a1f77",
+                        "on-background": "#ffffff",
+                        "secondary": "#669dff",
+                        "on-secondary-fixed": "#00326f",
+                        "on-secondary-fixed-variant": "#004ea5",
+                        "on-primary-fixed-variant": "#4f1c00",
+                        "surface-bright": "#2c2c2c",
+                        "surface-container-lowest": "#000000",
+                        "on-secondary": "#001f49",
+                        "primary-fixed-dim": "#f66700",
+                        "error": "#ff716c",
+                        "surface-tint": "#ff9159",
+                        "on-tertiary-container": "#60136d",
+                        "on-error-container": "#ffa8a3",
+                        "error-dim": "#d7383b",
+                        "primary-container": "#ff7a2f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .liquid-glass {
+            background: rgba(31, 32, 32, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#0E0E0E]/80 backdrop-blur-xl flex justify-between items-center px-6 h-16">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 transition-transform text-[#FF9159]">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="text-2xl font-bold tracking-widest text-[#FF9159] font-['Space_Grotesk'] tracking-tight">VELOCITY</h1>
+</div>
+<button class="active:scale-95 transition-transform text-[#FF9159]">
+<span class="material-symbols-outlined">tune</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-32 px-6 max-w-md mx-auto">
+<div class="mb-8">
+<h2 class="font-headline text-4xl font-bold text-on-surface mb-1">Settings</h2>
+<p class="text-on-surface-variant font-label text-sm uppercase tracking-widest">System Configuration</p>
+</div>
+<form class="space-y-6">
+<!-- Account Profile Section -->
+<section class="liquid-glass rounded-xl p-5 border border-white/5 space-y-4">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-primary">person</span>
+<h3 class="font-headline text-lg font-medium">Account Profile</h3>
+</div>
+<div class="flex items-center gap-4 py-2">
+<div class="relative">
+<img alt="User profile" class="w-16 h-16 rounded-full object-cover border-2 border-primary/20" data-alt="Close-up portrait of a professional man in a dark environment with moody orange ambient lighting hitting his face side-on" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDT61HM7dxqMZp46PQb9wWaQz3Tol9vZ0iy6uFLScPzRrFQ8MZYO_4oX0D8Ug15JZx1weh4dpV8D3JXBBKDc2Wmt3gTxySvWCvbv1_hd47YsoJaUycgNJojiQITWUtOlA8OUM-twtBwExrqmkDL2wmk0RbTfWeqOwtSVKVm_RfA9MRv1eAB_201n8mbUHhsXKQFHeLqhWYyQoAzt9AxuzO0AY3F1jKxY_WyKblgs803JeekEzhPPrscOq71kHOdMjAXFm4iFoTH_hZm"/>
+<div class="absolute bottom-0 right-0 bg-primary text-on-primary-container p-1 rounded-full text-[10px]">
+<span class="material-symbols-outlined !text-[14px]">edit</span>
+</div>
+</div>
+<div>
+<p class="font-headline font-bold text-white">Alex Sterling</p>
+<p class="text-xs text-on-surface-variant">alex.s@velocity.io</p>
+</div>
+</div>
+<div class="space-y-3">
+<div class="group">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant mb-1 font-bold">Display Name</label>
+<input class="w-full bg-surface-container-highest border-none rounded-lg text-sm text-on-surface focus:ring-1 focus:ring-primary transition-all" type="text" value="Alex Sterling"/>
+</div>
+</div>
+</section>
+<!-- Notification Preferences -->
+<section class="liquid-glass rounded-xl p-5 border border-white/5 space-y-4">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-secondary">notifications</span>
+<h3 class="font-headline text-lg font-medium">Notifications</h3>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div>
+<p class="text-sm font-medium">Price Drop Alerts</p>
+<p class="text-[11px] text-on-surface-variant">Notify when saved cars decrease in price</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="text-sm font-medium">New Arrivals</p>
+<p class="text-[11px] text-on-surface-variant">Based on your search filters</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Regional & Language -->
+<section class="liquid-glass rounded-xl p-5 border border-white/5 space-y-5">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-tertiary">language</span>
+<h3 class="font-headline text-lg font-medium">Regional</h3>
+</div>
+<div class="grid grid-cols-1 gap-4">
+<div class="group">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant mb-1 font-bold">Currency Selection</label>
+<select class="w-full bg-surface-container-highest border-none rounded-lg text-sm text-on-surface focus:ring-1 focus:ring-primary appearance-none">
+<option>USD ($) - US Dollar</option>
+<option selected="">KRW (₩) - South Korean Won</option>
+<option>RUB (₽) - Russian Ruble</option>
+<option>EUR (€) - Euro</option>
+</select>
+</div>
+<div class="group">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant mb-1 font-bold">Language</label>
+<select class="w-full bg-surface-container-highest border-none rounded-lg text-sm text-on-surface focus:ring-1 focus:ring-primary">
+<option selected="">English (US)</option>
+<option>한국어 (Korean)</option>
+<option>Deutsch (German)</option>
+<option>Русский (Russian)</option>
+</select>
+</div>
+<div class="group">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant mb-1 font-bold">Search Region</label>
+<div class="flex items-center bg-surface-container-highest rounded-lg px-3 py-2">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant mr-2">location_on</span>
+<span class="text-sm">Global - All Regions</span>
+<span class="material-symbols-outlined text-[18px] text-primary ml-auto">expand_more</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Save Changes Button -->
+<div class="pt-4 pb-12">
+<button class="w-full bg-gradient-to-r from-primary to-primary-fixed text-on-primary-fixed py-4 rounded-xl font-headline font-bold text-lg active:scale-[0.98] transition-transform shadow-lg shadow-primary/20" type="submit">
+                    Save Changes
+                </button>
+<button class="w-full mt-4 text-error text-sm font-label uppercase tracking-widest font-bold active:opacity-60 transition-opacity" type="button">
+                    Sign Out
+                </button>
+</div>
+</form>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full h-20 bg-[#131313]/90 backdrop-blur-2xl flex justify-around items-center px-4 pb-4 rounded-t-2xl z-50">
+<a class="flex flex-col items-center justify-center text-white/40 hover:text-white/90 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-[0.05em]">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-white/40 hover:text-white/90 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-[0.05em]">Saved</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#FF9159] font-bold active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-[0.05em]">Settings</span>
+</a>
+</nav>
+<!-- Ghost border effects & ambient lighting -->
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1] overflow-hidden">
+<div class="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-primary/5 blur-[120px] rounded-full"></div>
+<div class="absolute top-[40%] -right-[10%] w-[40%] h-[40%] bg-secondary/5 blur-[100px] rounded-full"></div>
+</div>
+</body></html>

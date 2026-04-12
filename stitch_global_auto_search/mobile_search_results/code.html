@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Velocity | Premium Inventory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;family=Inter:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#0e0e0e",
+                    "surface-container-high": "#1f2020",
+                    "primary": "#ff9159",
+                    "outline-variant": "#484848",
+                    "on-primary-container": "#401500",
+                    "primary-dim": "#ff7524",
+                    "secondary-fixed-dim": "#a8c4ff",
+                    "tertiary-dim": "#e48fed",
+                    "on-secondary-container": "#f7f7ff",
+                    "on-primary": "#531e00",
+                    "on-tertiary-fixed-variant": "#6a1f77",
+                    "secondary-dim": "#0070ea",
+                    "surface-container-low": "#131313",
+                    "tertiary-fixed": "#f39cfb",
+                    "inverse-surface": "#fcf9f8",
+                    "error-container": "#9f0519",
+                    "tertiary": "#fab0ff",
+                    "secondary-container": "#005bc0",
+                    "secondary-fixed": "#bed2ff",
+                    "surface-container": "#191a1a",
+                    "surface-variant": "#262626",
+                    "on-surface-variant": "#adaaaa",
+                    "tertiary-container": "#f39cfb",
+                    "on-surface": "#ffffff",
+                    "surface-container-highest": "#262626",
+                    "tertiary-fixed-dim": "#e48fed",
+                    "on-primary-fixed": "#000000",
+                    "inverse-primary": "#a14100",
+                    "on-tertiary-fixed": "#41004d",
+                    "background": "#0e0e0e",
+                    "inverse-on-surface": "#565555",
+                    "on-error": "#490006",
+                    "primary-fixed": "#ff7a2f",
+                    "outline": "#767575",
+                    "surface-dim": "#0e0e0e",
+                    "on-tertiary": "#6a1f77",
+                    "on-background": "#ffffff",
+                    "secondary": "#669dff",
+                    "on-secondary-fixed": "#00326f",
+                    "on-secondary-fixed-variant": "#004ea5",
+                    "on-primary-fixed-variant": "#4f1c00",
+                    "surface-bright": "#2c2c2c",
+                    "surface-container-lowest": "#000000",
+                    "on-secondary": "#001f49",
+                    "primary-fixed-dim": "#f66700",
+                    "error": "#ff716c",
+                    "surface-tint": "#ff9159",
+                    "on-tertiary-container": "#60136d",
+                    "on-error-container": "#ffa8a3",
+                    "error-dim": "#d7383b",
+                    "primary-container": "#ff7a2f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #0e0e0e; color: #ffffff; }
+        .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .glass-card { background: rgba(31, 32, 32, 0.6); backdrop-filter: blur(16px); }
+        .tonal-shift { background: #131313; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#0E0E0E]/80 backdrop-blur-xl flex justify-between items-center px-6 h-16">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#FF9159] active:scale-95 transition-transform" data-icon="menu">menu</span>
+<h1 class="text-2xl font-bold tracking-widest text-[#FF9159] font-['Space_Grotesk'] tracking-tight">VELOCITY</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-white/70 hover:text-[#FF9159] transition-colors active:scale-95 transition-transform" data-icon="tune">tune</span>
+</div>
+</header>
+<!-- Content Canvas -->
+<main class="pt-20 pb-24 px-4 max-w-lg mx-auto">
+<!-- Results Summary & Filter -->
+<section class="flex items-center justify-between mb-8">
+<div>
+<h2 class="font-headline text-3xl font-bold">124 Results</h2>
+<p class="text-on-surface-variant text-sm font-label uppercase tracking-widest">Berlin, Germany</p>
+</div>
+<button class="flex items-center gap-2 bg-surface-container-highest px-5 py-3 rounded-xl hover:bg-surface-bright transition-colors group">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="filter_list">filter_list</span>
+<span class="font-label text-sm font-semibold uppercase tracking-wider">Filters</span>
+</button>
+</section>
+<!-- Search Results Feed -->
+<div class="flex flex-col gap-8">
+<!-- Result Item 1 -->
+<article class="relative overflow-hidden group">
+<div class="aspect-[16/10] w-full rounded-2xl overflow-hidden mb-4 relative">
+<img alt="Luxury orange sports car" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close-up of a sleek orange modern electric sports car with aggressive aerodynamic lines parked in a dark technical studio environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB00XmR2lxdcveNoljRX8gGEAQUUqNyHAD3J-7kskzFkuJbKjFsoeSfq3GdYDR4gTQIFy67f3gRfl-kp_wi5nIqfgShdRNIR2OeSzGFf2UraNVje2MCjBfuIw_jH6-bhgE-fgMJrRa0Ut2fQzJqrhVz3QoDhk0CE0TyKtauzUAWA1UXN4ZF99CcunnS5QDQyeb61QL16fefHioUMUvcbKUUe4mTjEB-LO3KgRYKmC8GIA5i1hLF5aAZ5nXPARZJKPLZrcdBWfYQxUbk"/>
+<!-- Feature Chip -->
+<div class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
+                        New Arrival
+                    </div>
+<!-- Favorite Action -->
+<button class="absolute top-4 right-4 h-10 w-10 glass-card rounded-full flex items-center justify-center text-white/80 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+</div>
+<div class="flex flex-col gap-3 px-1">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-primary font-label text-xs font-bold uppercase tracking-[0.1em]">2024 Porsche</p>
+<h3 class="font-headline text-2xl font-bold tracking-tight">Taycan Turbo S</h3>
+</div>
+<div class="text-right">
+<p class="font-headline text-2xl font-bold text-white">$185,000</p>
+</div>
+</div>
+<!-- Specs Bar -->
+<div class="flex items-center gap-4 py-2 border-y border-white/5 overflow-x-auto no-scrollbar">
+<div class="flex items-center gap-1.5 shrink-0">
+<span class="material-symbols-outlined text-xs text-secondary" data-icon="speed">speed</span>
+<span class="text-xs text-on-surface-variant font-medium">1,200 km</span>
+</div>
+<div class="flex items-center gap-1.5 shrink-0">
+<span class="material-symbols-outlined text-xs text-secondary" data-icon="bolt">bolt</span>
+<span class="text-xs text-on-surface-variant font-medium">Electric</span>
+</div>
+<div class="flex items-center gap-1.5 shrink-0">
+<span class="material-symbols-outlined text-xs text-secondary" data-icon="settings_input_component">settings_input_component</span>
+<span class="text-xs text-on-surface-variant font-medium">AWD</span>
+</div>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container py-4 rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-primary transition-colors active:scale-95 transition-transform">
+                        Open details
+                    </button>
+</div>
+</article>
+<!-- Result Item 2 -->
+<article class="relative overflow-hidden group">
+<div class="aspect-[16/10] w-full rounded-2xl overflow-hidden mb-4 relative">
+<img alt="Matte black luxury sedan" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Matte black high-performance luxury sedan silhouetted against a minimal grey concrete background with sharp moody lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbziS6uvdtkgaDhKAVGqpbf_6uRs03C1gbXyZv9d74PkQ0sRDhBy53vX22T7RIQih0sYPMnMckwWGs1Vke1GGAzZO5HYW8YWps12P4Tcso-oU9C6qSirw_vZDs0Xw_oiE-4yxAEGVeD4jBYU1jwHbMMwvO083qyJWatK1XL6ostRBl4np55is8BrFPCJNyTDjnSR7t2hpt2nGyiDWGBWKplIXYvimYKujfIWopb0G52gh0H0eNEwcKfvqPukF0k69kEPYdnvBIBmjX"/>
+<button class="absolute top-4 right-4 h-10 w-10 glass-card rounded-full flex items-center justify-center text-white/80 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="flex flex-col gap-3 px-1">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-primary font-label text-xs font-bold uppercase tracking-[0.1em]">2023 Audi</p>
+<h3 class="font-headline text-2xl font-bold tracking-tight">RS7 Sportback</h3>
+</div>
+<div class="text-right">
+<p class="font-headline text-2xl font-bold text-white">$124,500</p>
+</div>
+</div>
+<div class="flex items-center gap-4 py-2 border-y border-white/5">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-xs text-secondary" data-icon="speed">speed</span>
+<span class="text-xs text-on-surface-variant font-medium">12,400 km</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-xs text-secondary" data-icon="local_gas_station">local_gas_station</span>
+<span class="text-xs text-on-surface-variant font-medium">Gasoline</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-xs text-secondary" data-icon="settings_input_component">settings_input_component</span>
+<span class="text-xs text-on-surface-variant font-medium">Quattro</span>
+</div>
+</div>
+<button class="w-full bg-surface-container-highest text-white py-4 rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-surface-bright transition-colors active:scale-95 transition-transform">
+                        Open details
+                    </button>
+</div>
+</article>
+<!-- Result Item 3 -->
+<article class="relative overflow-hidden group">
+<div class="aspect-[16/10] w-full rounded-2xl overflow-hidden mb-4 relative">
+<img alt="White electric suv" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Modern white electric SUV parked in a minimalist architecture driveway at dawn with soft blue and purple sky reflections on the glass" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0N_xKv9M9p6ylaj_KsdHdkxKV6dQWGOfsFhT54v3iXhSCZeVa-E0xfcyOe678ZNGgDnLfCUjocH1l8N_JS61mC1else-gnx6zd71X6_Gfezg6toVvWRuEda6wzbGeZ58San3Jh79G1O1iP9Yw2SU83ZQjuIFw3JI_3D1zGvpXOSJc8d3rURxy5S6Vt19ajvpESziDlOjaMzcziBnNr2Kh-vVswXiXM8HJBYFc-_grABHNWxq6ROc095prTnen-_2W7szytrJ4abf1"/>
+<div class="absolute top-4 left-4 bg-[#FF9159]/20 backdrop-blur-md text-[#FF9159] px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
+                        Price Drop
+                    </div>
+<button class="absolute top-4 right-4 h-10 w-10 glass-card rounded-full flex items-center justify-center text-white/80 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+</div>
+<div class="flex flex-col gap-3 px-1">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-primary font-label text-xs font-bold uppercase tracking-[0.1em]">2024 Tesla</p>
+<h3 class="font-headline text-2xl font-bold tracking-tight">Model X Plaid</h3>
+</div>
+<div class="text-right">
+<p class="font-headline text-2xl font-bold text-white">$108,000</p>
+</div>
+</div>
+<div class="flex items-center gap-4 py-2 border-y border-white/5">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-xs text-secondary" data-icon="speed">speed</span>
+<span class="text-xs text-on-surface-variant font-medium">5,000 km</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-xs text-secondary" data-icon="bolt">bolt</span>
+<span class="text-xs text-on-surface-variant font-medium">Electric</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-xs text-secondary" data-icon="settings_input_component">settings_input_component</span>
+<span class="text-xs text-on-surface-variant font-medium">AWD</span>
+</div>
+</div>
+<button class="w-full bg-surface-container-highest text-white py-4 rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-surface-bright transition-colors active:scale-95 transition-transform">
+                        Open details
+                    </button>
+</div>
+</article>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-4 pb-4 bg-[#131313]/90 backdrop-blur-2xl z-50 rounded-t-2xl shadow-[0_-4px_40px_rgba(102,157,255,0.08)]">
+<a class="flex flex-col items-center justify-center text-[#FF9159] font-bold active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="search" style="font-variation-settings: 'FILL' 1;">search</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-[0.05em] mt-1">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-white/40 hover:text-white/90 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-[0.05em] mt-1">Saved</span>
+</a>
+<a class="flex flex-col items-center justify-center text-white/40 hover:text-white/90 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-[0.05em] mt-1">Settings</span>
+</a>
+</nav>
+</body></html>

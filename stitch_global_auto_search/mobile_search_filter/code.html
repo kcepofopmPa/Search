@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Liquid Glass Editorial - Search &amp; Filter</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#fcf9f8",
+                        "on-secondary": "#001f49",
+                        "tertiary-dim": "#e48fed",
+                        "secondary-dim": "#0070ea",
+                        "surface-bright": "#2c2c2c",
+                        "on-secondary-fixed-variant": "#004ea5",
+                        "on-primary-fixed-variant": "#4f1c00",
+                        "primary-fixed-dim": "#f66700",
+                        "surface-container-high": "#1f2020",
+                        "on-background": "#ffffff",
+                        "error": "#ff716c",
+                        "on-surface": "#ffffff",
+                        "on-tertiary-container": "#60136d",
+                        "tertiary-fixed-dim": "#e48fed",
+                        "secondary-fixed-dim": "#a8c4ff",
+                        "tertiary-fixed": "#f39cfb",
+                        "on-error-container": "#ffa8a3",
+                        "on-secondary-container": "#f7f7ff",
+                        "on-primary": "#531e00",
+                        "background": "#0e0e0e",
+                        "surface-tint": "#ff9159",
+                        "outline": "#767575",
+                        "tertiary-container": "#f39cfb",
+                        "primary-container": "#ff7a2f",
+                        "on-error": "#490006",
+                        "surface": "#0e0e0e",
+                        "on-tertiary": "#6a1f77",
+                        "surface-container-highest": "#262626",
+                        "surface-dim": "#0e0e0e",
+                        "on-tertiary-fixed-variant": "#6a1f77",
+                        "surface-container": "#191a1a",
+                        "primary": "#ff9159",
+                        "primary-dim": "#ff7524",
+                        "on-primary-container": "#401500",
+                        "on-tertiary-fixed": "#41004d",
+                        "error-container": "#9f0519",
+                        "inverse-primary": "#a14100",
+                        "secondary-fixed": "#bed2ff",
+                        "surface-container-lowest": "#000000",
+                        "surface-variant": "#262626",
+                        "outline-variant": "#484848",
+                        "secondary": "#669dff",
+                        "primary-fixed": "#ff7a2f",
+                        "on-secondary-fixed": "#00326f",
+                        "error-dim": "#d7383b",
+                        "surface-container-low": "#131313",
+                        "on-primary-fixed": "#000000",
+                        "secondary-container": "#005bc0",
+                        "on-surface-variant": "#adaaaa",
+                        "inverse-on-surface": "#565555",
+                        "tertiary": "#fab0ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(38, 38, 38, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body antialiased">
+<!-- Main Container (Mobile View Simulation) -->
+<div class="relative mx-auto min-h-screen max-w-md bg-background overflow-hidden flex flex-col">
+<!-- Shared Header Logic: Minimal back for Focused View (Search/Filter Context) -->
+<header class="flex items-center justify-between p-6 pb-2">
+<button class="flex items-center justify-center size-10 rounded-full bg-surface-container-high text-on-surface">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline text-xl font-bold tracking-tight">Explore Fleet</h1>
+<div class="size-10"></div>
+</header>
+<!-- Search Section -->
+<div class="px-6 py-4">
+<div class="relative flex items-center">
+<div class="absolute left-4 text-on-surface-variant">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="w-full h-14 pl-12 pr-4 bg-surface-container-highest border-none rounded-xl text-on-surface placeholder:text-on-surface-variant focus:ring-0 focus:bg-surface-bright transition-colors" placeholder="Search brand, model, or year" type="text"/>
+</div>
+<div class="mt-4 flex gap-3">
+<button class="flex-1 h-12 flex items-center justify-center gap-2 bg-primary text-on-primary font-bold rounded-xl shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">tune</span>
+<span class="font-headline tracking-wide">FILTERS</span>
+</button>
+<button class="w-14 h-12 flex items-center justify-center bg-surface-container-high rounded-xl">
+<span class="material-symbols-outlined">history</span>
+</button>
+</div>
+</div>
+<!-- Scrollable Content Area -->
+<div class="flex-1 overflow-y-auto px-6 pb-24">
+<!-- Recent Searches -->
+<section class="mt-6">
+<h3 class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4">Recent Searches</h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-xl group">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Porsche Taycan 4S</p>
+<p class="text-xs text-on-surface-variant">Electric • 2023</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">north_west</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-xl group">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Audi RS e-tron GT</p>
+<p class="text-xs text-on-surface-variant">Quattro • Carbon Edition</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">north_west</span>
+</div>
+</div>
+</section>
+<!-- Featured Cars (The Gallery) -->
+<section class="mt-10">
+<div class="flex items-baseline justify-between mb-6">
+<h3 class="font-headline text-2xl font-bold tracking-tight">Daily Picks</h3>
+<span class="font-label text-xs font-bold text-primary tracking-widest uppercase">View All</span>
+</div>
+<div class="grid gap-8">
+<!-- Feature Card 1 -->
+<div class="relative group">
+<div class="relative h-64 w-full overflow-hidden rounded-xl bg-surface-container-high">
+<img class="h-full w-full object-cover" data-alt="Modern high-performance sports car in sleek metallic grey, sharp cinematic lighting on a dark minimalist background, aggressive automotive design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByeQ7K4z-V5FMczp-DmQE3GfO-Q2Zr_SPJH-Gidly_7z7YGZG8ewoBU3o-58APBQL9Z48F-En3u6T2BY4-tST5lTPrwHplmshDMXezUIx_vhtJPQrqKtxNou2PIpU_8FL_kQkKrvIku9noxcDiTVjT9H10DruQWKGH-tUXToF-43FXoiVSAeXf6U7bo4LR320oJTZUjXbsO63X_wLrn8BQapKRTZJBPVLjR90gERl8QYSC1flPiTFX4mlEaSwwHlqH0FxEWiUSzcdR"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"></div>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase tracking-wider rounded-full backdrop-blur-md">New Arrival</span>
+</div>
+</div>
+<div class="mt-4 flex justify-between items-start">
+<div>
+<h4 class="font-headline text-xl font-bold">GT-R Premium Edition</h4>
+<p class="text-on-surface-variant text-sm font-medium">3.8L V6 Twin-Turbo • AWD</p>
+</div>
+<div class="text-right">
+<p class="font-headline text-xl font-bold text-primary">$115,000</p>
+<p class="text-on-surface-variant text-xs">Excl. taxes</p>
+</div>
+</div>
+</div>
+<!-- Feature Card 2 -->
+<div class="relative group">
+<div class="relative h-64 w-full overflow-hidden rounded-xl bg-surface-container-high">
+<img class="h-full w-full object-cover" data-alt="Sleek electric sedan in deep sapphire blue, neon city reflections on the body, twilight urban setting with blurred lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQF3r_hiCIv4davAo2CRAvqr3WG4NQwxXqpRicLhKEq-Rvq7v-JQKpHR8pQT8sDlq66YK-zoO-CRyP_4Sp1XLg6bRY9-gDokLwYt569Rf076K0tIHVkjKD6fqmpIhBwAUVijFhXiwEgTLznxMYLOehUthYWUlx5UznN4Lz-2a0Ctfjv9vMSNtqVqrLQd4snFD7i38k3TaoDWuvRiMD0sBl-RmSD_dRWL4SWZWvdOBxz_ayQOrVttcSxlf4wbYJInIz90f6k7-dB88P"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"></div>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-tertiary-container text-on-tertiary-container text-[10px] font-bold uppercase tracking-wider rounded-full backdrop-blur-md">Electric Elite</span>
+</div>
+</div>
+<div class="mt-4 flex justify-between items-start">
+<div>
+<h4 class="font-headline text-xl font-bold">Model S Plaid</h4>
+<p class="text-on-surface-variant text-sm font-medium">Tri-Motor Platform • 1,020hp</p>
+</div>
+<div class="text-right">
+<p class="font-headline text-xl font-bold text-primary">$89,990</p>
+<p class="text-on-surface-variant text-xs">Excl. taxes</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Filter Modal (Overlay State) -->
+<div class="fixed inset-0 z-50 flex flex-col bg-background translate-y-0 shadow-2xl">
+<!-- Modal Header -->
+<div class="flex items-center justify-between p-6 bg-surface-container-low border-b border-outline-variant/10">
+<button class="size-10 flex items-center justify-center rounded-full bg-surface-container-high">
+<span class="material-symbols-outlined">close</span>
+</button>
+<h2 class="font-headline text-xl font-bold">Fine Tune</h2>
+<button class="font-label text-xs font-bold text-primary tracking-widest uppercase">Reset</button>
+</div>
+<!-- Modal Content -->
+<div class="flex-1 overflow-y-auto p-6 space-y-8">
+<!-- Filter Group: Brand -->
+<div class="space-y-4">
+<label class="font-label text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant">Manufacturer</label>
+<div class="grid grid-cols-2 gap-3">
+<button class="h-14 flex items-center justify-center gap-3 bg-surface-bright rounded-xl border border-primary/40">
+<div class="size-6 bg-white rounded-full p-1 flex items-center justify-center">
+<img alt="BMW" class="w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWm-VkEEGft85YeTaUT3ToqLgKARLv800YqPbDQO77ZQ7J6Jv31eGHjMrResDFthknXJ4EiAGrScQg5T31cbcSb2f-vSCxp2FjxqnjbmguINgarL2WGGCa48wo5ISr4dhaCm0lLFk3imYHq7v6JErD9rVynaLncZDdjiSZ0JCIpyVX5wCo5cjcHueFAIV5-6N6pc56vIq5D-mgMyf_CpNTdSgaTwCslrDWKHl88j-rtpWL1tdFM6nA9NS0jj__sNwjdZapkqecYN_C"/>
+</div>
+<span class="font-bold text-sm">BMW</span>
+</button>
+<button class="h-14 flex items-center justify-center gap-3 bg-surface-container-high rounded-xl border border-outline-variant/20">
+<div class="size-6 bg-white rounded-full p-1 flex items-center justify-center">
+<img alt="VW" class="w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM_cB4H1VVQuj3VtvPyAdGX9xUgF326jFT44TzaU4sUP8WcdqiWx5NnArJ5hlY1LKMuw7z8pVEEf6GAYDm-DT9EpEbW2F4zDyLvJ63hQpYzA3iInBS1Fuq_GnSLh6Ig8sp7p9--6LtONfyrM5ctcapffwEI3Ny6X-i5LCGOPPxctSwd8RCjV9-RPnN2jKHDBqDInYeCgnY4hNPxRvW6sEVwri6Wpq2t7sMhtu8nWNQtaqRxojvDRsz-ldh90BvhpAB0jZAz1lCfUGk"/>
+</div>
+<span class="font-bold text-sm">Volkswagen</span>
+</button>
+<button class="h-14 flex items-center justify-center gap-3 bg-surface-container-high rounded-xl border border-outline-variant/20">
+<span class="font-bold text-sm">Tesla</span>
+</button>
+<button class="h-14 flex items-center justify-center gap-3 bg-surface-container-high rounded-xl border border-outline-variant/20">
+<span class="font-bold text-sm">Porsche</span>
+</button>
+</div>
+</div>
+<!-- Filter Group: Price Range -->
+<div class="space-y-6">
+<div class="flex justify-between items-end">
+<label class="font-label text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant">Price Range</label>
+<span class="font-headline text-lg font-bold text-primary">$45k - $120k</span>
+</div>
+<div class="relative h-2 bg-surface-container-highest rounded-full">
+<div class="absolute left-[20%] right-[30%] h-full bg-primary rounded-full"></div>
+<div class="absolute left-[20%] top-1/2 -translate-y-1/2 size-6 bg-white rounded-full shadow-lg border-2 border-primary"></div>
+<div class="absolute right-[30%] top-1/2 -translate-y-1/2 size-6 bg-white rounded-full shadow-lg border-2 border-primary"></div>
+</div>
+</div>
+<!-- Filter Group: Fuel Type -->
+<div class="space-y-4">
+<label class="font-label text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant">Fuel Type</label>
+<div class="flex flex-wrap gap-3">
+<button class="px-6 py-3 bg-surface-bright border border-primary/40 rounded-full font-bold text-sm">Electric</button>
+<button class="px-6 py-3 bg-surface-container-high border border-outline-variant/20 rounded-full font-bold text-sm text-on-surface-variant">Hybrid</button>
+<button class="px-6 py-3 bg-surface-container-high border border-outline-variant/20 rounded-full font-bold text-sm text-on-surface-variant">Petrol</button>
+<button class="px-6 py-3 bg-surface-container-high border border-outline-variant/20 rounded-full font-bold text-sm text-on-surface-variant">Diesel</button>
+</div>
+</div>
+<!-- Filter Group: Drive Type -->
+<div class="space-y-4 pb-10">
+<label class="font-label text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant">Drive Type</label>
+<div class="flex flex-wrap gap-3">
+<button class="px-6 py-3 bg-surface-container-high border border-outline-variant/20 rounded-full font-bold text-sm text-on-surface-variant">AWD</button>
+<button class="px-6 py-3 bg-surface-bright border border-primary/40 rounded-full font-bold text-sm">RWD</button>
+<button class="px-6 py-3 bg-surface-container-high border border-outline-variant/20 rounded-full font-bold text-sm text-on-surface-variant">FWD</button>
+</div>
+</div>
+</div>
+<!-- Sticky Footer for Actions -->
+<div class="p-6 glass-panel border-t border-outline-variant/20">
+<button class="w-full h-16 bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold rounded-2xl flex items-center justify-center gap-3 shadow-2xl shadow-primary/30">
+<span class="font-headline text-lg tracking-wider">SHOW 142 RESULTS</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

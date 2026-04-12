@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kinetic Gallery | Search Results</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#0e0e0e",
+                        "surface-container-high": "#1f2020",
+                        "primary": "#ff9159",
+                        "outline-variant": "#484848",
+                        "on-primary-container": "#401500",
+                        "primary-dim": "#ff7524",
+                        "secondary-fixed-dim": "#a8c4ff",
+                        "tertiary-dim": "#e48fed",
+                        "on-secondary-container": "#f7f7ff",
+                        "on-primary": "#531e00",
+                        "on-tertiary-fixed-variant": "#6a1f77",
+                        "secondary-dim": "#0070ea",
+                        "surface-container-low": "#131313",
+                        "tertiary-fixed": "#f39cfb",
+                        "inverse-surface": "#fcf9f8",
+                        "error-container": "#9f0519",
+                        "tertiary": "#fab0ff",
+                        "secondary-container": "#005bc0",
+                        "secondary-fixed": "#bed2ff",
+                        "surface-container": "#191a1a",
+                        "surface-variant": "#262626",
+                        "on-surface-variant": "#adaaaa",
+                        "tertiary-container": "#f39cfb",
+                        "on-surface": "#ffffff",
+                        "surface-container-highest": "#262626",
+                        "tertiary-fixed-dim": "#e48fed",
+                        "on-primary-fixed": "#000000",
+                        "inverse-primary": "#a14100",
+                        "on-tertiary-fixed": "#41004d",
+                        "background": "#0e0e0e",
+                        "inverse-on-surface": "#565555",
+                        "on-error": "#490006",
+                        "primary-fixed": "#ff7a2f",
+                        "outline": "#767575",
+                        "surface-dim": "#0e0e0e",
+                        "on-tertiary": "#6a1f77",
+                        "on-background": "#ffffff",
+                        "secondary": "#669dff",
+                        "on-secondary-fixed": "#00326f",
+                        "on-secondary-fixed-variant": "#004ea5",
+                        "on-primary-fixed-variant": "#4f1c00",
+                        "surface-bright": "#2c2c2c",
+                        "surface-container-lowest": "#000000",
+                        "on-secondary": "#001f49",
+                        "primary-fixed-dim": "#f66700",
+                        "error": "#ff716c",
+                        "surface-tint": "#ff9159",
+                        "on-tertiary-container": "#60136d",
+                        "on-error-container": "#ffa8a3",
+                        "error-dim": "#d7383b",
+                        "primary-container": "#ff7a2f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #0e0e0e; color: #ffffff; }
+        .font-space-grotesk { font-family: 'Space Grotesk', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-card { background: rgba(31, 32, 32, 0.6); backdrop-filter: blur(12px); }
+        .tonal-shift-no-border { border: none !important; }
+        .click-bounce-effect:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="bg-surface selection:bg-primary/30">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-[#0E0E0E]/80 backdrop-blur-xl flex justify-between items-center px-8 h-20 w-full shadow-[0_20px_40px_rgba(102,157,255,0.08)]">
+<div class="text-2xl font-black tracking-tighter text-white font-space-grotesk">KINETIC GALLERY</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="font-space-grotesk text-sm tracking-widest uppercase transition-colors duration-300 text-[#FF9159] border-b-2 border-[#FF9159] pb-1" href="#">Inventory</a>
+<a class="font-space-grotesk text-sm tracking-widest uppercase transition-colors duration-300 text-neutral-400 hover:text-white" href="#">Electric</a>
+<a class="font-space-grotesk text-sm tracking-widest uppercase transition-colors duration-300 text-neutral-400 hover:text-white" href="#">Heritage</a>
+<a class="font-space-grotesk text-sm tracking-widest uppercase transition-colors duration-300 text-neutral-400 hover:text-white" href="#">Sell</a>
+</nav>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-neutral-400 hover:text-white transition-colors">favorite</button>
+<button class="material-symbols-outlined text-neutral-400 hover:text-white transition-colors">account_circle</button>
+</div>
+</header>
+<!-- SideNavBar (Hidden on desktop for this specific search result layout as requested, but included for system integrity if needed) -->
+<aside class="h-screen w-64 fixed left-0 top-0 hidden lg:flex flex-col bg-[#131313] py-8 px-4 gap-6 z-40 pt-28">
+<div class="mb-8 px-2">
+<h2 class="text-xl font-bold text-white font-space-grotesk">KINETIC</h2>
+<p class="text-xs text-neutral-500 uppercase tracking-widest">Elite Member</p>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-4 py-3 px-4 rounded-lg font-space-grotesk font-medium text-[#FF9159] bg-[#FF9159]/10 border-r-4 border-[#FF9159] hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">directions_car</span> Showroom
+            </a>
+<a class="flex items-center gap-4 py-3 px-4 rounded-lg font-space-grotesk font-medium text-neutral-500 hover:bg-neutral-800/50 hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">speed</span> Performance
+            </a>
+<a class="flex items-center gap-4 py-3 px-4 rounded-lg font-space-grotesk font-medium text-neutral-500 hover:bg-neutral-800/50 hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">history</span> Pre-Owned
+            </a>
+<a class="flex items-center gap-4 py-3 px-4 rounded-lg font-space-grotesk font-medium text-neutral-500 hover:bg-neutral-800/50 hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">payments</span> Financing
+            </a>
+<a class="flex items-center gap-4 py-3 px-4 rounded-lg font-space-grotesk font-medium text-neutral-500 hover:bg-neutral-800/50 hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">support_agent</span> Concierge
+            </a>
+</nav>
+<div class="mt-auto">
+<button class="w-full bg-primary py-4 rounded-xl font-space-grotesk font-bold text-on-primary-container click-bounce-effect">Book Test Drive</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="pt-28 pb-24 px-8 lg:ml-64 flex gap-8">
+<!-- Filter Sidebar -->
+<section class="hidden xl:block w-72 flex-shrink-0">
+<div class="sticky top-28 space-y-8">
+<div>
+<h3 class="font-space-grotesk text-xs font-black uppercase tracking-[0.2em] text-primary mb-6">Refine Search</h3>
+<!-- Search Input -->
+<div class="relative mb-8">
+<input class="w-full bg-surface-container-highest border-none rounded-xl py-3 px-4 text-sm focus:ring-0 focus:bg-surface-bright transition-all placeholder:text-neutral-600" placeholder="Model, keyword..." type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-neutral-500 text-lg">search</span>
+<div class="absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-300 group-focus-within:w-full"></div>
+</div>
+<!-- Filter Groups -->
+<div class="space-y-6">
+<div class="space-y-3">
+<label class="font-space-grotesk text-[10px] font-bold uppercase tracking-widest text-neutral-500">Manufacturer</label>
+<div class="space-y-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-4 h-4 rounded bg-surface-container-highest flex items-center justify-center group-hover:bg-neutral-700">
+<div class="w-2 h-2 bg-primary rounded-sm opacity-0 group-has-[:checked]:opacity-100"></div>
+</div>
+<input checked="" class="hidden" type="checkbox"/>
+<span class="text-sm text-neutral-300 group-hover:text-white transition-colors">BMW</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-4 h-4 rounded bg-surface-container-highest flex items-center justify-center group-hover:bg-neutral-700"></div>
+<input class="hidden" type="checkbox"/>
+<span class="text-sm text-neutral-400 group-hover:text-white transition-colors">Mercedes-Benz</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-4 h-4 rounded bg-surface-container-highest flex items-center justify-center group-hover:bg-neutral-700"></div>
+<input class="hidden" type="checkbox"/>
+<span class="text-sm text-neutral-400 group-hover:text-white transition-colors">Audi</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-4 h-4 rounded bg-surface-container-highest flex items-center justify-center group-hover:bg-neutral-700"></div>
+<input class="hidden" type="checkbox"/>
+<span class="text-sm text-neutral-400 group-hover:text-white transition-colors">Porsche</span>
+</label>
+</div>
+</div>
+<div class="space-y-3">
+<label class="font-space-grotesk text-[10px] font-bold uppercase tracking-widest text-neutral-500">Price Range</label>
+<div class="flex items-center gap-4">
+<input class="w-full bg-surface-container-highest border-none rounded-lg py-2 px-3 text-xs focus:ring-0 focus:bg-surface-bright" placeholder="Min" type="text"/>
+<span class="text-neutral-600">—</span>
+<input class="w-full bg-surface-container-highest border-none rounded-lg py-2 px-3 text-xs focus:ring-0 focus:bg-surface-bright" placeholder="Max" type="text"/>
+</div>
+</div>
+<div class="space-y-3">
+<label class="font-space-grotesk text-[10px] font-bold uppercase tracking-widest text-neutral-500">Fuel Type</label>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1.5 rounded-full text-[10px] font-bold bg-secondary-container text-on-secondary-container">Electric</button>
+<button class="px-3 py-1.5 rounded-full text-[10px] font-bold bg-surface-container-highest text-neutral-400 hover:text-white">Hybrid</button>
+<button class="px-3 py-1.5 rounded-full text-[10px] font-bold bg-surface-container-highest text-neutral-400 hover:text-white">Petrol</button>
+<button class="px-3 py-1.5 rounded-full text-[10px] font-bold bg-surface-container-highest text-neutral-400 hover:text-white">Diesel</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Results Grid -->
+<section class="flex-grow">
+<div class="flex justify-between items-end mb-10">
+<div>
+<h1 class="text-4xl font-black font-space-grotesk tracking-tighter mb-2">FOUND 24 VEHICLES</h1>
+<p class="text-neutral-500 text-sm">Showing performance listings from global inventory</p>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-xs font-bold font-space-grotesk text-neutral-500 uppercase tracking-widest">Sort By:</span>
+<select class="bg-transparent border-none text-sm font-bold font-space-grotesk text-white focus:ring-0 cursor-pointer">
+<option>Newest First</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+<option>Mileage: Low to High</option>
+</select>
+</div>
+</div>
+<!-- The Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-x-6 gap-y-12">
+<!-- Car Card 1 -->
+<div class="group flex flex-col">
+<div class="relative aspect-[4/3] overflow-hidden rounded-2xl mb-6 bg-surface-container-low">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="sleek modern black luxury coupe in a minimalist dark studio with cinematic overhead lighting and sharp reflections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyeYkXgHXz8s7gEBxpqo8l2_TNZtOjPvOCeo6tnGjEi6J33Re0Hnhu7g9NoBUtGNFr7Mu09vvKIjVIgmxcrbCtz2HApY3zN1NA_f8rvZ68vN_3G2-fzxNTmScN884FviA9sf1RnI3w96bucnIZNjPJG1t11xXorqu8mBuQS9BOX1fTVmBBYS80UHut_0gVlzelMxDQyf_9lFA6GaQAFzHOLFo7r19R-4pxiKqi6BDuckglt1cdQDoRgg6qugdQ6DxUrjhIrgXzlerS"/>
+<button class="absolute top-4 right-4 w-10 h-10 rounded-full glass-card flex items-center justify-center text-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+<div class="absolute bottom-4 left-4">
+<span class="px-2 py-1 rounded bg-primary text-on-primary-container text-[10px] font-black uppercase tracking-wider">Premium Selection</span>
+</div>
+</div>
+<div class="flex-grow space-y-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-xl font-black font-space-grotesk text-white leading-none mb-1">BMW 8 SERIES</h3>
+<p class="text-neutral-500 text-sm font-medium">M850i xDrive Coupe</p>
+</div>
+<span class="text-sm font-space-grotesk font-bold text-neutral-400">2023</span>
+</div>
+<div class="grid grid-cols-2 gap-y-2 py-4 border-y border-outline-variant/10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">speed</span>
+<span class="text-[11px] font-bold text-neutral-300">4,200 MI</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">local_gas_station</span>
+<span class="text-[11px] font-bold text-neutral-300">PETROL</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">settings_input_component</span>
+<span class="text-[11px] font-bold text-neutral-300">ALL-WHEEL</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">calendar_today</span>
+<span class="text-[11px] font-bold text-neutral-300">AUTOMATIC</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2">
+<div>
+<div class="text-2xl font-black font-space-grotesk text-primary">$89,450</div>
+<div class="text-[10px] font-bold text-neutral-500 uppercase tracking-tighter">€82,140 LOCAL</div>
+</div>
+<button class="px-6 py-3 rounded-xl bg-surface-container-highest border border-outline-variant/20 hover:border-primary/50 text-xs font-black uppercase tracking-widest transition-all click-bounce-effect">Open</button>
+</div>
+</div>
+</div>
+<!-- Car Card 2 -->
+<div class="group flex flex-col">
+<div class="relative aspect-[4/3] overflow-hidden rounded-2xl mb-6 bg-surface-container-low">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="vibrant blue electric luxury sedan parked in a futuristic urban plaza at dusk with neon blue atmospheric lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBd0H15E2B52ws8rGH7tEBvWiV23sPe7FdpoZhjXgR8SrbGoNWXcigSayn8jGo0m0oUvoNNlxcT9lJdTvt-7ytCihRxOAO4n6fTZDBJKnV6G6hxMAh-bEIBO6XQeFVwlutfC98zEYmsdDJLkhHRcv9vnu-nQQvF6Q_nG_es9I3rgoV2bqevQwM0AtgpHpu_kPkLmuyqziFcoEHkiiCBQcEoQR_77EetiIaMZZzo7ZAXnbQmb9MFCR8WvuES3WGVYwpB2H0gKSmIv1nJ"/>
+<button class="absolute top-4 right-4 w-10 h-10 rounded-full glass-card flex items-center justify-center text-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+<div class="absolute bottom-4 left-4">
+<span class="px-2 py-1 rounded bg-secondary-container text-on-secondary-container text-[10px] font-black uppercase tracking-wider">Electric</span>
+</div>
+</div>
+<div class="flex-grow space-y-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-xl font-black font-space-grotesk text-white leading-none mb-1">AUDI E-TRON GT</h3>
+<p class="text-neutral-500 text-sm font-medium">RS Performance</p>
+</div>
+<span class="text-sm font-space-grotesk font-bold text-neutral-400">2024</span>
+</div>
+<div class="grid grid-cols-2 gap-y-2 py-4 border-y border-outline-variant/10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">speed</span>
+<span class="text-[11px] font-bold text-neutral-300">150 MI</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">bolt</span>
+<span class="text-[11px] font-bold text-neutral-300">ELECTRIC</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">settings_input_component</span>
+<span class="text-[11px] font-bold text-neutral-300">QUATTRO</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">battery_charging_full</span>
+<span class="text-[11px] font-bold text-neutral-300">93 KWH</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2">
+<div>
+<div class="text-2xl font-black font-space-grotesk text-primary">$104,900</div>
+<div class="text-[10px] font-bold text-neutral-500 uppercase tracking-tighter">€96,350 LOCAL</div>
+</div>
+<button class="px-6 py-3 rounded-xl bg-surface-container-highest border border-outline-variant/20 hover:border-primary/50 text-xs font-black uppercase tracking-widest transition-all click-bounce-effect">Open</button>
+</div>
+</div>
+</div>
+<!-- Car Card 3 -->
+<div class="group flex flex-col">
+<div class="relative aspect-[4/3] overflow-hidden rounded-2xl mb-6 bg-surface-container-low">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="classic white performance sports car driving on a scenic coastal road during a bright clear sunny day" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVjanE78nTf6m2zRdiI8kZruIJH0macB9SxgOL-4y2yqAJ44_igM6oMlLPFMG34Y-cXEe3Sh900Bh9k7-dTZSg3QB1kBLk2Zi04osOEHiZfsH3chzEhzU_oPUnyakYKOYGmP1dtCGXEuGf8sYp1zUXrWBArby1zBY-ZiJX5evprmQQsp8kGmLzq-AcXsU1XMtIZLhNX6qftUHx2zcNGNga1IHcmaT9FwqjhMfLW-LnXV_hS2UDfJaT-ryjD79oYvGHeI3jAyRH9Jn-"/>
+<button class="absolute top-4 right-4 w-10 h-10 rounded-full glass-card flex items-center justify-center text-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+</div>
+<div class="flex-grow space-y-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-xl font-black font-space-grotesk text-white leading-none mb-1">PORSCHE 911</h3>
+<p class="text-neutral-500 text-sm font-medium">Carrera 4S</p>
+</div>
+<span class="text-sm font-space-grotesk font-bold text-neutral-400">2022</span>
+</div>
+<div class="grid grid-cols-2 gap-y-2 py-4 border-y border-outline-variant/10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">speed</span>
+<span class="text-[11px] font-bold text-neutral-300">12,800 MI</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">local_gas_station</span>
+<span class="text-[11px] font-bold text-neutral-300">PETROL</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">settings_input_component</span>
+<span class="text-[11px] font-bold text-neutral-300">REAR-DRIVE</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">history_edu</span>
+<span class="text-[11px] font-bold text-neutral-300">CERTIFIED</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2">
+<div>
+<div class="text-2xl font-black font-space-grotesk text-primary">$132,500</div>
+<div class="text-[10px] font-bold text-neutral-500 uppercase tracking-tighter">€121,700 LOCAL</div>
+</div>
+<button class="px-6 py-3 rounded-xl bg-surface-container-highest border border-outline-variant/20 hover:border-primary/50 text-xs font-black uppercase tracking-widest transition-all click-bounce-effect">Open</button>
+</div>
+</div>
+</div>
+<!-- Car Card 4 -->
+<div class="group flex flex-col">
+<div class="relative aspect-[4/3] overflow-hidden rounded-2xl mb-6 bg-surface-container-low">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="aggressive grey sports sedan featuring sharp lines and carbon fiber accents shown in a high-tech warehouse" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALKAR_8yZL7nFXSsjzX_ZxYXyUgjVgguT6vWmj_v7wf0NKmnQqM-mhvVh2VNmjvejarogv5KuFDEJmvQo-tVcbD_-E0p0mBReBablHptco_MabUsscumrFFh2gxF64srEsXljd_9tJkesyYeRbT7svJKieVD0-3fp1Z7KZ1YNCVrpTIfHQ49wemeMtH0at76wwhS5PMEqFbHdTXvPEgQS7cpZrKnWmmRXdjka9pbl8L2zZkwxo9WZf0rN4nMzs_AJDJqzv_80cOkGr"/>
+<button class="absolute top-4 right-4 w-10 h-10 rounded-full glass-card flex items-center justify-center text-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+</div>
+<div class="flex-grow space-y-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-xl font-black font-space-grotesk text-white leading-none mb-1">MERCEDES-AMG C63</h3>
+<p class="text-neutral-500 text-sm font-medium">Final Edition S</p>
+</div>
+<span class="text-sm font-space-grotesk font-bold text-neutral-400">2023</span>
+</div>
+<div class="grid grid-cols-2 gap-y-2 py-4 border-y border-outline-variant/10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">speed</span>
+<span class="text-[11px] font-bold text-neutral-300">2,100 MI</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">local_gas_station</span>
+<span class="text-[11px] font-bold text-neutral-300">HYBRID</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">settings_input_component</span>
+<span class="text-[11px] font-bold text-neutral-300">RWD</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">grade</span>
+<span class="text-[11px] font-bold text-neutral-300">COLLECTOR</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2">
+<div>
+<div class="text-2xl font-black font-space-grotesk text-primary">$98,000</div>
+<div class="text-[10px] font-bold text-neutral-500 uppercase tracking-tighter">€90,100 LOCAL</div>
+</div>
+<button class="px-6 py-3 rounded-xl bg-surface-container-highest border border-outline-variant/20 hover:border-primary/50 text-xs font-black uppercase tracking-widest transition-all click-bounce-effect">Open</button>
+</div>
+</div>
+</div>
+<!-- Repeating simple cards for layout density -->
+<!-- Car Card 5 (Brief) -->
+<div class="group flex flex-col opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+<div class="relative aspect-[4/3] overflow-hidden rounded-2xl mb-6 bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="modern blue sportscar against a simple studio backdrop with high-contrast lighting highlighting its aerodynamic curves" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYPHz0Yuf07GaSnWFbkFQzth--gR_aq2LpxCxdL_dgAcCtdMo38a7svxdZ_vyNxJPjqTUjG40aMrRMaZtTXkmVuDNsj00N2ElmbwowCDZWxyRGfa_JxtOUW4Nyd9-l_1vWBK7KnES6KsPnYb_KdSF1AhfPQko7NEn4K_76vja2HSf4pWMQePVjCzmE92C95vlDD55qRoxNqFO30UEXlhCcosr1SgsEcZckRqihOGSyGdRAQVpILl4GT4ohxQloHsw_AOAQLSuiJ_hU"/>
+</div>
+<div class="flex-grow space-y-4">
+<h3 class="text-lg font-black font-space-grotesk text-white leading-none">CHEVROLET CORVETTE Z06</h3>
+<div class="flex justify-between items-center text-primary font-space-grotesk font-black">$124,000</div>
+</div>
+</div>
+<!-- Car Card 6 (Brief) -->
+<div class="group flex flex-col opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+<div class="relative aspect-[4/3] overflow-hidden rounded-2xl mb-6 bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="luxury dark green grand tourer parked outside a modern glass architecture building during golden hour" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwtVck_SR60pld7twG76nqjIFE3vfYTE7BY1nlqWtAY-XR6Ah8ToXHY-RVPapxW4M6SmFbwO8I-McAw8wx-342_tdk9il6V2Rp_d4YwaLFOCcGeJPbZ9FxwnaKFiC1_6afRfVCp-YWTRQ5aPY0Sxga_m5v39ITVJNKEMrcBx4bWOvFsT3HB73kZYF2O0bO9yl_QmJvkj75qZEQry4r94PlnqCAFrYdpHJ3SOGbzuI1tRNdOtF4Id8cnXNldoyMiT2C2Mus0HCQWIh0"/>
+</div>
+<div class="flex-grow space-y-4">
+<h3 class="text-lg font-black font-space-grotesk text-white leading-none">ASTON MARTIN DB11</h3>
+<div class="flex justify-between items-center text-primary font-space-grotesk font-black">$205,000</div>
+</div>
+</div>
+</div>
+<!-- Pagination / Load More -->
+<div class="mt-20 flex flex-col items-center">
+<button class="group relative px-12 py-4 bg-transparent border border-outline-variant/30 rounded-full hover:border-primary transition-all duration-300 click-bounce-effect overflow-hidden">
+<span class="relative z-10 font-space-grotesk font-bold text-xs uppercase tracking-[0.3em] group-hover:text-on-primary-container">Load More Inventory</span>
+<div class="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+</button>
+<div class="mt-8 flex gap-3">
+<button class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">1</button>
+<button class="w-8 h-8 rounded-full hover:bg-neutral-800 text-neutral-500 flex items-center justify-center font-bold text-xs">2</button>
+<button class="w-8 h-8 rounded-full hover:bg-neutral-800 text-neutral-500 flex items-center justify-center font-bold text-xs">3</button>
+<button class="w-8 h-8 rounded-full hover:bg-neutral-800 text-neutral-500 flex items-center justify-center font-bold text-xs">...</button>
+<button class="w-8 h-8 rounded-full hover:bg-neutral-800 text-neutral-500 flex items-center justify-center font-bold text-xs">12</button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile only) -->
+<nav class="fixed bottom-0 w-full z-50 lg:hidden rounded-t-2xl bg-[#1F2020]/90 backdrop-blur-2xl flex justify-around items-center h-20 px-6 pb-safe shadow-[0_-10px_30px_rgba(0,0,0,0.5)]">
+<a class="flex flex-col items-center justify-center text-neutral-500" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-tighter mt-1">Browse</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#FF9159] bg-[#FF9159]/10 rounded-xl px-4 py-2" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-tighter mt-1">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-neutral-500" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-tighter mt-1">Saved</span>
+</a>
+<a class="flex flex-col items-center justify-center text-neutral-500" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-tighter mt-1">Profile</span>
+</a>
+</nav>
+<!-- Decorative Gradient Mesh -->
+<div class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none overflow-hidden">
+<div class="absolute top-[-10%] right-[-5%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[-10%] left-[-5%] w-[40%] h-[40%] bg-secondary/5 rounded-full blur-[120px]"></div>
+</div>
+</body></html>

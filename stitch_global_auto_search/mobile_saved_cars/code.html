@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#0e0e0e",
+                        "surface-container-high": "#1f2020",
+                        "primary": "#ff9159",
+                        "outline-variant": "#484848",
+                        "on-primary-container": "#401500",
+                        "primary-dim": "#ff7524",
+                        "secondary-fixed-dim": "#a8c4ff",
+                        "tertiary-dim": "#e48fed",
+                        "on-secondary-container": "#f7f7ff",
+                        "on-primary": "#531e00",
+                        "on-tertiary-fixed-variant": "#6a1f77",
+                        "secondary-dim": "#0070ea",
+                        "surface-container-low": "#131313",
+                        "tertiary-fixed": "#f39cfb",
+                        "inverse-surface": "#fcf9f8",
+                        "error-container": "#9f0519",
+                        "tertiary": "#fab0ff",
+                        "secondary-container": "#005bc0",
+                        "secondary-fixed": "#bed2ff",
+                        "surface-container": "#191a1a",
+                        "surface-variant": "#262626",
+                        "on-surface-variant": "#adaaaa",
+                        "tertiary-container": "#f39cfb",
+                        "on-surface": "#ffffff",
+                        "surface-container-highest": "#262626",
+                        "tertiary-fixed-dim": "#e48fed",
+                        "on-primary-fixed": "#000000",
+                        "inverse-primary": "#a14100",
+                        "on-tertiary-fixed": "#41004d",
+                        "background": "#0e0e0e",
+                        "inverse-on-surface": "#565555",
+                        "on-error": "#490006",
+                        "primary-fixed": "#ff7a2f",
+                        "outline": "#767575",
+                        "surface-dim": "#0e0e0e",
+                        "on-tertiary": "#6a1f77",
+                        "on-background": "#ffffff",
+                        "secondary": "#669dff",
+                        "on-secondary-fixed": "#00326f",
+                        "on-secondary-fixed-variant": "#004ea5",
+                        "on-primary-fixed-variant": "#4f1c00",
+                        "surface-bright": "#2c2c2c",
+                        "surface-container-lowest": "#000000",
+                        "on-secondary": "#001f49",
+                        "primary-fixed-dim": "#f66700",
+                        "error": "#ff716c",
+                        "surface-tint": "#ff9159",
+                        "on-tertiary-container": "#60136d",
+                        "on-error-container": "#ffa8a3",
+                        "error-dim": "#d7383b",
+                        "primary-container": "#ff7a2f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .liquid-glass {
+            background: rgba(38, 38, 38, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#0E0E0E]/80 backdrop-blur-xl flex justify-between items-center px-6 h-16">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#FF9159] active:scale-95 transition-transform" data-icon="menu">menu</span>
+<span class="text-2xl font-bold tracking-widest text-[#FF9159] font-['Space_Grotesk'] tracking-tight">VELOCITY</span>
+</div>
+<span class="material-symbols-outlined text-[#FF9159] active:scale-95 transition-transform" data-icon="tune">tune</span>
+</header>
+<main class="pt-24 pb-32 px-6">
+<!-- Page Header -->
+<div class="mb-8">
+<h1 class="font-headline text-4xl font-bold tracking-tight mb-2">Saved Cars</h1>
+<p class="text-on-surface-variant text-sm font-label uppercase tracking-widest">3 VEHICLES IN YOUR GALLERY</p>
+</div>
+<!-- Saved Cars List -->
+<div class="flex flex-col gap-8">
+<!-- Car Card 1 -->
+<div class="group relative flex flex-col bg-surface-container-low rounded-xl overflow-hidden active:scale-[0.98] transition-transform">
+<div class="relative h-64 w-full">
+<img alt="Luxury electric sports car" class="w-full h-full object-cover" data-alt="Sleek silver electric supercar parked in a minimalist high-tech garage with cool blue ambient lighting and glass reflections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMAOk3Ht-P78l9sbnqZg9tm5mSzVE9HJ2Kq74y644Hl2byma04eXvd7MmGKj8T_S6rkoobTY5GfO9CMOo92ITufWIaf9XUX0oCuQVZm3Wit7K4fW9DyMEePR-P5ylNb14ljDTM1uUNFzNjndyrhy2qJGFbLUq8cgoZR8RopdFjEPniUdu0TryQnK710dPMrXil_jsIV5NAnb2sUZyCtXN5sfoLLsFrL6P514rhop6PPDysC8JresYuPFHwpU1lOkKpKh1okKqi_-BC"/>
+<div class="absolute top-4 right-4 z-10">
+<button class="bg-surface/60 backdrop-blur-md p-3 rounded-full text-primary shadow-lg border border-white/10 active:scale-90 transition-all">
+<span class="material-symbols-outlined" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-surface-container-low to-transparent"></div>
+</div>
+<div class="p-6 -mt-12 relative z-20">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="inline-block px-3 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase tracking-wider rounded-full mb-2">NEW ARRIVAL</span>
+<h2 class="font-headline text-2xl font-bold text-white">Lumina GTS</h2>
+</div>
+<div class="text-right">
+<p class="font-headline text-2xl font-bold text-primary">$124,900</p>
+<p class="text-on-surface-variant text-xs font-label">Est. $1,840/mo</p>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-4 mb-6">
+<div class="flex flex-col gap-1">
+<span class="text-on-surface-variant text-[10px] uppercase tracking-widest">Range</span>
+<span class="text-white font-headline text-sm font-medium">420 mi</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-on-surface-variant text-[10px] uppercase tracking-widest">0-60</span>
+<span class="text-white font-headline text-sm font-medium">2.4s</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-on-surface-variant text-[10px] uppercase tracking-widest">Power</span>
+<span class="text-white font-headline text-sm font-medium">780 hp</span>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-gradient-to-r from-primary to-primary-fixed text-on-primary-fixed h-12 rounded-xl font-bold text-sm tracking-wide active:scale-95 transition-transform">
+                            VIEW DETAILS
+                        </button>
+<button class="w-12 h-12 flex items-center justify-center liquid-glass border border-white/5 rounded-xl text-white active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Car Card 2 -->
+<div class="group relative flex flex-col bg-surface-container-low rounded-xl overflow-hidden active:scale-[0.98] transition-transform">
+<div class="relative h-64 w-full">
+<img alt="Dark luxury sedan" class="w-full h-full object-cover" data-alt="Matte black luxury executive sedan driving on a coastal road at twilight with orange light trails and motion blur" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxlBm2Ms1i3Y3I0flspMP1JsDBoo1eAL2UglcIw8c9YjDLuhftumO65WrmLmrX5r_mf9IQbKS7GWRci3QnFuvNMS68NYfHu9m1u3xLGwMStOqKk5EkKhhzS6oES7LJWQrhLwQDJMuJj7Jd3oh7EuB3BK27TIwpKDEpukUSyKI_85nD_g1O01fdiOMh9yCtZ_prK_dGBkaaTWpVJhpBvM63ywmb8PLbye3TcxoKls4ppLIWdQmapDIC4eWXRRYWVqmcPb8fReDnK2sd"/>
+<div class="absolute top-4 right-4 z-10">
+<button class="bg-surface/60 backdrop-blur-md p-3 rounded-full text-primary shadow-lg border border-white/10 active:scale-90 transition-all">
+<span class="material-symbols-outlined" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-surface-container-low to-transparent"></div>
+</div>
+<div class="p-6 -mt-12 relative z-20">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="inline-block px-3 py-1 bg-tertiary-container/20 text-tertiary text-[10px] font-bold uppercase tracking-wider rounded-full mb-2">PRICE DROP</span>
+<h2 class="font-headline text-2xl font-bold text-white">Phantom X</h2>
+</div>
+<div class="text-right">
+<p class="font-headline text-2xl font-bold text-primary">$89,000</p>
+<p class="text-on-surface-variant text-xs font-label line-through">$94,500</p>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-4 mb-6">
+<div class="flex flex-col gap-1">
+<span class="text-on-surface-variant text-[10px] uppercase tracking-widest">Year</span>
+<span class="text-white font-headline text-sm font-medium">2023</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-on-surface-variant text-[10px] uppercase tracking-widest">Miles</span>
+<span class="text-white font-headline text-sm font-medium">12k mi</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-on-surface-variant text-[10px] uppercase tracking-widest">Engine</span>
+<span class="text-white font-headline text-sm font-medium">Hybrid V6</span>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-gradient-to-r from-primary to-primary-fixed text-on-primary-fixed h-12 rounded-xl font-bold text-sm tracking-wide active:scale-95 transition-transform">
+                            VIEW DETAILS
+                        </button>
+<button class="w-12 h-12 flex items-center justify-center liquid-glass border border-white/5 rounded-xl text-white active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Car Card 3 -->
+<div class="group relative flex flex-col bg-surface-container-low rounded-xl overflow-hidden active:scale-[0.98] transition-transform">
+<div class="relative h-64 w-full">
+<img alt="Vintage sports car" class="w-full h-full object-cover" data-alt="Classic red vintage sports car detailed in sunlight on a cobblestone European street with soft golden hour lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlJfIGnX7_IE8ueeGlElgHgGTU5kYcoklQYtYkDFJci4BV69p14XxOdpmUFnlBjb9yphfHjxbN_UPClg4ROxCMdSEHdTI4-pB2W8HGP0JaW-l_YT8ZMASL8bMUFwvapJ25ulH_GSXQm8wqLswA0CN5nst_HRIhySMDrXFBm38lUtVBULcTMkuY8gGg5ak8kh9WvYkfMcYai89k1R3UxPuIY6BAqq8X52Rb1xmJNHeteXjC4JFKVMQe2hp10qUwTlltR6DvYj6R0oS1"/>
+<div class="absolute top-4 right-4 z-10">
+<button class="bg-surface/60 backdrop-blur-md p-3 rounded-full text-primary shadow-lg border border-white/10 active:scale-90 transition-all">
+<span class="material-symbols-outlined" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-surface-container-low to-transparent"></div>
+</div>
+<div class="p-6 -mt-12 relative z-20">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="inline-block px-3 py-1 bg-secondary-container/20 text-secondary text-[10px] font-bold uppercase tracking-wider rounded-full mb-2">CERTIFIED</span>
+<h2 class="font-headline text-2xl font-bold text-white">Classic S-70</h2>
+</div>
+<div class="text-right">
+<p class="font-headline text-2xl font-bold text-primary">$45,500</p>
+<p class="text-on-surface-variant text-xs font-label">Fixed Price</p>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-4 mb-6">
+<div class="flex flex-col gap-1">
+<span class="text-on-surface-variant text-[10px] uppercase tracking-widest">Year</span>
+<span class="text-white font-headline text-sm font-medium">1992</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-on-surface-variant text-[10px] uppercase tracking-widest">Status</span>
+<span class="text-white font-headline text-sm font-medium">Pristine</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-on-surface-variant text-[10px] uppercase tracking-widest">Trans</span>
+<span class="text-white font-headline text-sm font-medium">Manual</span>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-gradient-to-r from-primary to-primary-fixed text-on-primary-fixed h-12 rounded-xl font-bold text-sm tracking-wide active:scale-95 transition-transform">
+                            VIEW DETAILS
+                        </button>
+<button class="w-12 h-12 flex items-center justify-center liquid-glass border border-white/5 rounded-xl text-white active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State (Hidden) -->
+<div class="hidden flex-col items-center justify-center py-20 text-center">
+<div class="w-24 h-24 bg-surface-container-high rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant" data-icon="favorite">favorite</span>
+</div>
+<h3 class="font-headline text-2xl font-bold mb-2">No Saved Cars</h3>
+<p class="text-on-surface-variant max-w-[240px] mb-8">Start exploring the gallery and save your favorites to view them here.</p>
+<button class="px-8 h-14 bg-primary text-on-primary-fixed rounded-xl font-bold active:scale-95 transition-transform">
+                EXPLORE GALLERY
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full h-20 bg-[#131313]/90 backdrop-blur-2xl flex justify-around items-center px-4 pb-4 z-50 rounded-t-2xl shadow-[0_-4px_40px_rgba(102,157,255,0.08)]">
+<a class="flex flex-col items-center justify-center text-white/40 hover:text-white/90 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="search">search</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-[0.05em]">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#FF9159] font-bold active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-[0.05em]">Saved</span>
+</a>
+<a class="flex flex-col items-center justify-center text-white/40 hover:text-white/90 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="settings">settings</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-[0.05em]">Settings</span>
+</a>
+</nav>
+</body></html>

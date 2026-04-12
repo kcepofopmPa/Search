@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Saved Cars | KINETIC GALLERY</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface": "#0e0e0e",
+            "surface-container-high": "#1f2020",
+            "primary": "#ff9159",
+            "outline-variant": "#484848",
+            "on-primary-container": "#401500",
+            "primary-dim": "#ff7524",
+            "secondary-fixed-dim": "#a8c4ff",
+            "tertiary-dim": "#e48fed",
+            "on-secondary-container": "#f7f7ff",
+            "on-primary": "#531e00",
+            "on-tertiary-fixed-variant": "#6a1f77",
+            "secondary-dim": "#0070ea",
+            "surface-container-low": "#131313",
+            "tertiary-fixed": "#f39cfb",
+            "inverse-surface": "#fcf9f8",
+            "error-container": "#9f0519",
+            "tertiary": "#fab0ff",
+            "secondary-container": "#005bc0",
+            "secondary-fixed": "#bed2ff",
+            "surface-container": "#191a1a",
+            "surface-variant": "#262626",
+            "on-surface-variant": "#adaaaa",
+            "tertiary-container": "#f39cfb",
+            "on-surface": "#ffffff",
+            "surface-container-highest": "#262626",
+            "tertiary-fixed-dim": "#e48fed",
+            "on-primary-fixed": "#000000",
+            "inverse-primary": "#a14100",
+            "on-tertiary-fixed": "#41004d",
+            "background": "#0e0e0e",
+            "inverse-on-surface": "#565555",
+            "on-error": "#490006",
+            "primary-fixed": "#ff7a2f",
+            "outline": "#767575",
+            "surface-dim": "#0e0e0e",
+            "on-tertiary": "#6a1f77",
+            "on-background": "#ffffff",
+            "secondary": "#669dff",
+            "on-secondary-fixed": "#00326f",
+            "on-secondary-fixed-variant": "#004ea5",
+            "on-primary-fixed-variant": "#4f1c00",
+            "surface-bright": "#2c2c2c",
+            "surface-container-lowest": "#000000",
+            "on-secondary": "#001f49",
+            "primary-fixed-dim": "#f66700",
+            "error": "#ff716c",
+            "surface-tint": "#ff9159",
+            "on-tertiary-container": "#60136d",
+            "on-error-container": "#ffa8a3",
+            "error-dim": "#d7383b",
+            "primary-container": "#ff7a2f"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "headline": ["Space Grotesk"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .font-space-grotesk { font-family: 'Space Grotesk', sans-serif; }
+    .font-inter { font-family: 'Inter', sans-serif; }
+    .tonal-shift-no-border { border: none !important; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary selection:text-on-primary">
+<nav class="bg-[#131313]/80 backdrop-blur-xl fixed top-0 w-full z-50 tonal-shift-no-border shadow-[0_20px_40px_rgba(102,157,255,0.08)] flex justify-between items-center px-8 h-20">
+<div class="text-2xl font-black tracking-tighter text-white font-space-grotesk">KINETIC GALLERY</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-space-grotesk text-sm tracking-widest uppercase text-neutral-400 hover:text-white transition-colors duration-300" href="#">Inventory</a>
+<a class="font-space-grotesk text-sm tracking-widest uppercase text-neutral-400 hover:text-white transition-colors duration-300" href="#">Electric</a>
+<a class="font-space-grotesk text-sm tracking-widest uppercase text-neutral-400 hover:text-white transition-colors duration-300" href="#">Heritage</a>
+<a class="font-space-grotesk text-sm tracking-widest uppercase text-neutral-400 hover:text-white transition-colors duration-300" href="#">Sell</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-[#FF9159] border-b-2 border-[#FF9159] pb-1 scale-95 active:opacity-80 transition-transform flex items-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+<button class="text-neutral-400 hover:text-white transition-colors duration-300 scale-95 active:opacity-80 transition-transform">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</nav>
+<aside class="bg-[#1F2020] h-screen w-64 fixed left-0 top-0 hidden lg:flex flex-col py-8 px-4 gap-6 z-40">
+<div class="mt-20 mb-8 px-4">
+<div class="text-xl font-bold text-white font-space-grotesk">KINETIC</div>
+<div class="text-neutral-500 text-xs tracking-widest uppercase">Elite Member</div>
+</div>
+<div class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#FF9159] bg-[#FF9159]/10 border-r-4 border-[#FF9159] font-space-grotesk font-medium hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">directions_car</span>
+<span>Showroom</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-neutral-500 hover:bg-neutral-800/50 font-space-grotesk font-medium hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">speed</span>
+<span>Performance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-neutral-500 hover:bg-neutral-800/50 font-space-grotesk font-medium hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">history</span>
+<span>Pre-Owned</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-neutral-500 hover:bg-neutral-800/50 font-space-grotesk font-medium hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span>Financing</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-neutral-500 hover:bg-neutral-800/50 font-space-grotesk font-medium hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">support_agent</span>
+<span>Concierge</span>
+</a>
+</div>
+<div class="mt-auto px-4">
+<button class="w-full py-4 bg-gradient-to-r from-primary to-primary-fixed text-on-primary-container font-bold rounded-xl active:scale-95 transition-transform">
+        Book Test Drive
+      </button>
+</div>
+</aside>
+<main class="lg:pl-64 pt-24 pb-20 px-8 min-h-screen">
+<header class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
+<div class="max-w-2xl">
+<h1 class="text-5xl font-black font-headline tracking-tighter text-white mb-2 uppercase">Saved Cars</h1>
+<p class="text-on-surface-variant text-lg">Your curated selection of precision engineering and automotive excellence.</p>
+</div>
+<div class="flex items-center gap-4 bg-surface-container-low p-1.5 rounded-xl">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-highest text-primary rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+<span class="text-xs font-bold uppercase tracking-widest font-label">Showcase</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 text-on-surface-variant hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">format_list_bulleted</span>
+<span class="text-xs font-bold uppercase tracking-widest font-label">List</span>
+</button>
+</div>
+</header>
+<section class="flex flex-col gap-12">
+<article class="group relative bg-surface-container-high rounded-3xl overflow-hidden shadow-2xl flex flex-col xl:flex-row border border-white/5">
+<div class="xl:w-3/5 relative overflow-hidden aspect-video xl:aspect-auto min-h-[400px]">
+<img class="w-full h-full object-cover transition-all duration-700 group-hover:scale-105" data-alt="Sleek black modern supercar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkb1b1gwxMyWtT1FqyDwLZdefj7zPq__bo6Ad7CGCD8hq0VCYnqpTUn2oBMz2KaXbqCpXcD7mXVNEJCKvDcBF_K2ogCKnUWl5zXNPYQIwr6Q_dyzT1u0tlUvtX5sbtVeB30KnwcMF9YNqeEAU6W07AMEBKvfW9zf8E8CKixh_AjBo4enIwTrKcBpGwawDpvjVzmB9iiGVhdG_WD-zQR32hfevt91ttXKr51F1f1ceXCJQT0EXLXAjUW0QfDP93StjsnwvKEqZdtCMo"/>
+<div class="absolute inset-0 bg-gradient-to-r from-surface-container-high/80 via-transparent to-transparent hidden xl:block"></div>
+<div class="absolute top-6 left-6">
+<span class="bg-primary text-on-primary px-4 py-1.5 text-xs font-black tracking-widest uppercase rounded-full">Featured Selection</span>
+</div>
+</div>
+<div class="xl:w-2/5 p-8 xl:p-12 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-6">
+<div>
+<h2 class="text-5xl font-black font-headline text-white leading-tight">Apex Z-7</h2>
+<p class="text-sm font-bold tracking-widest text-primary uppercase mt-2">2024 Performance Edition</p>
+</div>
+<button class="p-4 bg-surface-container-highest border border-white/10 rounded-full text-primary hover:bg-error/20 hover:text-error transition-all group/remove shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="mb-8">
+<div class="text-3xl font-black font-headline text-white">$189,500</div>
+<div class="text-on-surface-variant text-sm mt-1">Excluding taxes and shipping</div>
+</div>
+<div class="space-y-6">
+<h4 class="text-xs font-black tracking-widest text-white uppercase border-b border-outline-variant pb-2">Technical Specifications</h4>
+<div class="grid grid-cols-2 gap-x-8 gap-y-4">
+<div>
+<p class="text-[10px] uppercase tracking-tighter text-on-surface-variant font-bold">Engine</p>
+<p class="text-sm font-medium text-white">4.0L Twin-Turbo V8</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-tighter text-on-surface-variant font-bold">Horsepower</p>
+<p class="text-sm font-medium text-white">720 HP @ 7,500 RPM</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-tighter text-on-surface-variant font-bold">Acceleration</p>
+<p class="text-sm font-medium text-white">0-60 mph in 3.2s</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-tighter text-on-surface-variant font-bold">Transmission</p>
+<p class="text-sm font-medium text-white">7-Speed Dual-Clutch</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-tighter text-on-surface-variant font-bold">Interior</p>
+<p class="text-sm font-medium text-white">Alcantara &amp; Carbon Fiber</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-tighter text-on-surface-variant font-bold">Drive Type</p>
+<p class="text-sm font-medium text-white">Rear-Wheel Drive</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 flex gap-4">
+<button class="flex-1 py-4 bg-primary text-on-primary font-black rounded-xl uppercase tracking-widest text-xs hover:bg-primary-dim transition-colors">Details</button>
+<button class="flex-1 py-4 bg-surface-container-highest border border-outline-variant text-white font-black rounded-xl uppercase tracking-widest text-xs hover:bg-surface-bright transition-colors">Contact Expert</button>
+</div>
+</div>
+</article>
+<div class="space-y-6">
+<h3 class="text-xl font-black font-headline text-white tracking-tight uppercase">Other Favorites</h3>
+<section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<article class="group relative bg-surface-container-high rounded-2xl overflow-hidden border border-white/5 flex items-stretch h-48 transition-all hover:border-primary/30">
+<div class="w-1/3 relative overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Vintage sports car" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkdbbATrfEW6S9uHjAuCc_1i-rDYa74CNktBBaRQnS6-B7ZRo0lLJvRDjBiGnQstmFT7obE5LHZ8lNbJEhmxfGfiBAGFMLlbVVq3-6wl_x2_tNGzIQqEiVPH2BMlxyMpv8JRAJnuijBWq70LlylyaZ0y2FIMVcI38W04JigzJc4e8iz1-dm8nT-FgC0IAHAYTF6ar8rguACO7AS3pp5bCenHIXk9Y9B-0jwrYM-vkEeuQSnjFrO0HOQd_S8CGHuForjQ-DIz9rLwcR"/>
+<div class="absolute inset-0 bg-gradient-to-r from-transparent to-surface-container-high/40"></div>
+</div>
+<div class="flex-1 p-5 flex flex-col justify-between">
+<div class="flex justify-between">
+<div>
+<span class="text-[10px] font-bold text-primary tracking-widest uppercase">Heritage</span>
+<h3 class="text-xl font-black font-headline text-white">Venom GT</h3>
+</div>
+<button class="text-primary hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="flex justify-between items-end">
+<div class="space-y-1">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">history</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">12,400 Mi</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">V12 Petrol</span>
+</div>
+</div>
+<div class="text-xl font-black font-headline text-white">$245,000</div>
+</div>
+</div>
+</article>
+<article class="group relative bg-surface-container-high rounded-2xl overflow-hidden border border-white/5 flex items-stretch h-48 transition-all hover:border-primary/30">
+<div class="w-1/3 relative overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Electric blue coupe" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIx_qG8Z6VSVIHwIo1TMeMnHABVW3GFnWOD6DIMZFMNNDLcf73aCeTz-2QAmfqBAXpDZcJRmkzF5zUmdGNT4s_NSVaU6i4m7kKO2ueW0jU4IdIDS6a_2mZgQ4pZvbgtuihkW2MnDs5E0MysduUu-X34m0y6ceo4g5yKl1RxePEkFP265YWITMhiuFGw5VO0o339y_3xktJsvt3uJjkc2CZ3GLWacYLELz2T4AL12OwZ39m6OH0ZbuGjT3xg5UkJ221SwpfhjwXUvLT"/>
+<div class="absolute inset-0 bg-gradient-to-r from-transparent to-surface-container-high/40"></div>
+</div>
+<div class="flex-1 p-5 flex flex-col justify-between">
+<div class="flex justify-between">
+<div>
+<span class="text-[10px] font-bold text-tertiary tracking-widest uppercase">Limited</span>
+<h3 class="text-xl font-black font-headline text-white">Volt-X</h3>
+</div>
+<button class="text-primary hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="flex justify-between items-end">
+<div class="space-y-1">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">ev_station</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">420 Mi Range</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">speed</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">Top Speed 200</span>
+</div>
+</div>
+<div class="text-xl font-black font-headline text-white">$125,900</div>
+</div>
+</div>
+</article>
+<article class="group relative bg-surface-container-high rounded-2xl overflow-hidden border border-white/5 flex items-stretch h-48 transition-all hover:border-primary/30">
+<div class="w-1/3 relative overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Luxury SUV" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAW2MwUgxlfY5NCRa6UVH-ZYTrNkNnM_mqoS25rTQ81SRyDPKa9t9w58YMso9Ox5gh0P8Jt9G0c4SqA4PTodXY9DMUovUsNbX4vx_8tkTq0xKsmjFdOFa_P5WeW9Apn80WoDvaf31l4EZBaryX6_bQmcEupvCKNbVdnZ3nz3mkUazwaIvz6OMh9Di-HnNdgYrkalRmDkXhkq2N34_ucyCiTCCjA3Hs6RKjzhQ6ioIJnMMotxP985jPwDEwkl-dCYsQkQZlvdaKkZrQe"/>
+<div class="absolute inset-0 bg-gradient-to-r from-transparent to-surface-container-high/40"></div>
+</div>
+<div class="flex-1 p-5 flex flex-col justify-between">
+<div class="flex justify-between">
+<div>
+<span class="text-[10px] font-bold text-on-surface-variant tracking-widest uppercase">Luxury</span>
+<h3 class="text-xl font-black font-headline text-white">Titan SUV</h3>
+</div>
+<button class="text-primary hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="flex justify-between items-end">
+<div class="space-y-1">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">group</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">7 Seater</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">terrain</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">AWD Off-road</span>
+</div>
+</div>
+<div class="text-xl font-black font-headline text-white">$98,000</div>
+</div>
+</div>
+</article>
+</section>
+</div>
+</section>
+</main>
+<footer class="fixed bottom-0 w-full z-50 lg:hidden rounded-t-2xl bg-[#1F2020]/90 backdrop-blur-2xl shadow-[0_-10px_30px_rgba(0,0,0,0.5)] flex justify-around items-center h-20 px-6 pb-safe">
+<button class="flex flex-col items-center justify-center text-neutral-500 p-2">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-tighter">Browse</span>
+</button>
+<button class="flex flex-col items-center justify-center text-neutral-500 p-2">
+<span class="material-symbols-outlined">search</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-tighter">Search</span>
+</button>
+<button class="flex flex-col items-center justify-center text-[#FF9159] bg-[#FF9159]/10 rounded-xl px-4 py-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-tighter">Saved</span>
+</button>
+<button class="flex flex-col items-center justify-center text-neutral-500 p-2">
+<span class="material-symbols-outlined">person</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-tighter">Profile</span>
+</button>
+</footer>
+
+</body></html>

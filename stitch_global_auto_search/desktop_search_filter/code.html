@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#0e0e0e",
+                        "surface-container-high": "#1f2020",
+                        "primary": "#ff9159",
+                        "outline-variant": "#484848",
+                        "on-primary-container": "#401500",
+                        "primary-dim": "#ff7524",
+                        "secondary-fixed-dim": "#a8c4ff",
+                        "tertiary-dim": "#e48fed",
+                        "on-secondary-container": "#f7f7ff",
+                        "on-primary": "#531e00",
+                        "on-tertiary-fixed-variant": "#6a1f77",
+                        "secondary-dim": "#0070ea",
+                        "surface-container-low": "#131313",
+                        "tertiary-fixed": "#f39cfb",
+                        "inverse-surface": "#fcf9f8",
+                        "error-container": "#9f0519",
+                        "tertiary": "#fab0ff",
+                        "secondary-container": "#005bc0",
+                        "secondary-fixed": "#bed2ff",
+                        "surface-container": "#191a1a",
+                        "surface-variant": "#262626",
+                        "on-surface-variant": "#adaaaa",
+                        "tertiary-container": "#f39cfb",
+                        "on-surface": "#ffffff",
+                        "surface-container-highest": "#262626",
+                        "tertiary-fixed-dim": "#e48fed",
+                        "on-primary-fixed": "#000000",
+                        "inverse-primary": "#a14100",
+                        "on-tertiary-fixed": "#41004d",
+                        "background": "#0e0e0e",
+                        "inverse-on-surface": "#565555",
+                        "on-error": "#490006",
+                        "primary-fixed": "#ff7a2f",
+                        "outline": "#767575",
+                        "surface-dim": "#0e0e0e",
+                        "on-tertiary": "#6a1f77",
+                        "on-background": "#ffffff",
+                        "secondary": "#669dff",
+                        "on-secondary-fixed": "#00326f",
+                        "on-secondary-fixed-variant": "#004ea5",
+                        "on-primary-fixed-variant": "#4f1c00",
+                        "surface-bright": "#2c2c2c",
+                        "surface-container-lowest": "#000000",
+                        "on-secondary": "#001f49",
+                        "primary-fixed-dim": "#f66700",
+                        "error": "#ff716c",
+                        "surface-tint": "#ff9159",
+                        "on-tertiary-container": "#60136d",
+                        "on-error-container": "#ffa8a3",
+                        "error-dim": "#d7383b",
+                        "primary-container": "#ff7a2f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .liquid-glass {
+            background: rgba(31, 32, 32, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0e0e0e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #484848;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30">
+<!-- TopNavBar -->
+<nav class="bg-[#0E0E0E]/80 backdrop-blur-xl fixed top-0 w-full z-50 flex justify-between items-center px-8 h-20 w-full shadow-[0_20px_40px_rgba(102,157,255,0.08)]">
+<div class="text-2xl font-black tracking-tighter text-white font-headline">KINETIC GALLERY</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-headline text-sm tracking-widest uppercase text-[#FF9159] border-b-2 border-[#FF9159] pb-1 hover:text-white transition-colors duration-300" href="#">Inventory</a>
+<a class="font-headline text-sm tracking-widest uppercase text-neutral-400 hover:text-white transition-colors duration-300" href="#">Electric</a>
+<a class="font-headline text-sm tracking-widest uppercase text-neutral-400 hover:text-white transition-colors duration-300" href="#">Heritage</a>
+<a class="font-headline text-sm tracking-widest uppercase text-neutral-400 hover:text-white transition-colors duration-300" href="#">Sell</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-[#FF9159] scale-95 active:opacity-80 transition-transform">favorite</button>
+<button class="material-symbols-outlined text-white scale-95 active:opacity-80 transition-transform">account_circle</button>
+</div>
+</nav>
+<!-- SideNavBar (Hidden on desktop as per request for a filter sidebar, but integrated semantic shell) -->
+<aside class="h-screen w-20 fixed left-0 top-0 hidden lg:flex flex-col bg-[#131313] py-8 px-4 gap-6 z-40 pt-24 items-center">
+<div class="flex flex-col gap-8">
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-[#FF9159] p-2 bg-[#FF9159]/10 rounded-xl">directions_car</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-neutral-500 hover:text-white transition-all duration-200">speed</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-neutral-500 hover:text-white transition-all duration-200">history</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-neutral-500 hover:text-white transition-all duration-200">payments</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-neutral-500 hover:text-white transition-all duration-200">support_agent</span>
+</button>
+</div>
+</aside>
+<main class="pl-20 pt-20 flex min-h-screen">
+<!-- Filter Sidebar -->
+<aside class="w-80 liquid-glass sticky top-20 h-[calc(100vh-5rem)] overflow-y-auto p-8 border-r border-outline-variant/10">
+<div class="flex items-center justify-between mb-8">
+<h2 class="font-headline text-lg font-bold tracking-tight uppercase">Refine Search</h2>
+<button class="text-xs font-label text-primary hover:underline">Reset</button>
+</div>
+<div class="space-y-10">
+<!-- Brand Filter -->
+<div class="space-y-4">
+<label class="font-label text-[10px] font-bold uppercase tracking-tighter text-on-surface-variant">Brand</label>
+<div class="grid grid-cols-2 gap-2">
+<button class="px-3 py-2 rounded-lg bg-surface-container-highest text-xs font-medium border border-outline-variant/15 text-left flex justify-between items-center group hover:bg-surface-bright">
+                            BMW <span class="material-symbols-outlined text-[14px] opacity-0 group-hover:opacity-100">check</span>
+</button>
+<button class="px-3 py-2 rounded-lg bg-primary/10 text-primary text-xs font-bold border border-primary/20 text-left flex justify-between items-center">
+                            Hyundai <span class="material-symbols-outlined text-[14px]">check</span>
+</button>
+<button class="px-3 py-2 rounded-lg bg-surface-container-highest text-xs font-medium border border-outline-variant/15 text-left group hover:bg-surface-bright">Porsche</button>
+<button class="px-3 py-2 rounded-lg bg-surface-container-highest text-xs font-medium border border-outline-variant/15 text-left group hover:bg-surface-bright">Tesla</button>
+</div>
+</div>
+<!-- Model Search -->
+<div class="space-y-4">
+<label class="font-label text-[10px] font-bold uppercase tracking-tighter text-on-surface-variant">Model</label>
+<div class="relative">
+<input class="w-full bg-surface-container-highest border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 placeholder:text-neutral-600" placeholder="e.g. IONIQ 5" type="text"/>
+</div>
+</div>
+<!-- Price Range -->
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<label class="font-label text-[10px] font-bold uppercase tracking-tighter text-on-surface-variant">Price Range</label>
+<span class="text-xs font-headline text-primary">$45k - $120k</span>
+</div>
+<div class="relative h-1 bg-surface-container-highest rounded-full">
+<div class="absolute h-full left-1/4 right-1/4 bg-primary rounded-full"></div>
+<div class="absolute w-4 h-4 bg-white rounded-full -top-1.5 left-1/4 border-2 border-primary shadow-lg"></div>
+<div class="absolute w-4 h-4 bg-white rounded-full -top-1.5 right-1/4 border-2 border-primary shadow-lg"></div>
+</div>
+<div class="flex gap-4">
+<input class="w-1/2 bg-surface-container-low border-none rounded-lg px-3 py-2 text-xs" placeholder="From" type="text"/>
+<input class="w-1/2 bg-surface-container-low border-none rounded-lg px-3 py-2 text-xs" placeholder="To" type="text"/>
+</div>
+</div>
+<!-- Fuel Type -->
+<div class="space-y-4">
+<label class="font-label text-[10px] font-bold uppercase tracking-tighter text-on-surface-variant">Fuel Type</label>
+<div class="space-y-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-5 h-5 rounded-md bg-surface-container-highest border border-outline-variant/30 flex items-center justify-center group-hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="text-sm font-medium">Electric</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-5 h-5 rounded-md bg-surface-container-highest border border-outline-variant/30 flex items-center justify-center group-hover:border-primary transition-colors"></div>
+<span class="text-sm font-medium text-neutral-400 group-hover:text-white">Hybrid</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-5 h-5 rounded-md bg-surface-container-highest border border-outline-variant/30 flex items-center justify-center group-hover:border-primary transition-colors"></div>
+<span class="text-sm font-medium text-neutral-400 group-hover:text-white">Gasoline</span>
+</label>
+</div>
+</div>
+<!-- Year Selection -->
+<div class="space-y-4">
+<label class="font-label text-[10px] font-bold uppercase tracking-tighter text-on-surface-variant">Production Year</label>
+<div class="flex items-center gap-2">
+<select class="w-full bg-surface-container-highest border-none rounded-lg text-xs py-2">
+<option>2020</option>
+<option>2021</option>
+<option>2022</option>
+<option>2023</option>
+<option>2024</option>
+</select>
+<span class="text-neutral-600">to</span>
+<select class="w-full bg-surface-container-highest border-none rounded-lg text-xs py-2">
+<option>2024</option>
+<option>2023</option>
+<option>2022</option>
+</select>
+</div>
+</div>
+<button class="w-full bg-gradient-to-br from-primary to-primary-fixed text-on-primary-fixed font-headline font-bold py-4 rounded-xl mt-6 uppercase tracking-widest text-sm shadow-[0_10px_20px_rgba(255,145,89,0.2)] hover:scale-[1.02] active:scale-95 transition-all">
+                    Show 142 Vehicles
+                </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<section class="flex-1 p-10 bg-surface">
+<!-- Header & Search -->
+<div class="max-w-6xl mx-auto space-y-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="space-y-2">
+<span class="font-label text-xs font-bold text-secondary uppercase tracking-[0.2em]">Live Inventory</span>
+<h1 class="font-headline text-5xl font-black text-white leading-none tracking-tighter">THE KINETIC COLLECTION</h1>
+</div>
+<div class="flex items-center gap-3 bg-surface-container-high p-1.5 rounded-2xl border border-outline-variant/10">
+<button class="px-4 py-2 bg-surface-bright rounded-xl text-xs font-bold text-white">Grid</button>
+<button class="px-4 py-2 rounded-xl text-xs font-medium text-neutral-500 hover:text-white transition-colors">List</button>
+</div>
+</div>
+<!-- Universal Search Bar -->
+<div class="relative group">
+<div class="absolute inset-y-0 left-6 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-neutral-500 group-focus-within:text-primary transition-colors">search</span>
+</div>
+<input class="w-full bg-surface-container-low border-b-2 border-outline-variant/20 focus:border-primary bg-opacity-50 py-6 pl-16 pr-8 text-xl font-headline transition-all outline-none focus:bg-surface-container-high placeholder:text-neutral-700" placeholder="Search by name, spec, or VIN..." type="text"/>
+<div class="absolute right-6 top-1/2 -translate-y-1/2 flex gap-2">
+<span class="px-2 py-1 rounded bg-surface-variant text-[10px] text-neutral-400 font-bold border border-outline-variant/20">CMD</span>
+<span class="px-2 py-1 rounded bg-surface-variant text-[10px] text-neutral-400 font-bold border border-outline-variant/20">K</span>
+</div>
+</div>
+<!-- Featured Empty State / Zero Results Alternative -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Asymmetric Featured Card -->
+<div class="col-span-1 md:col-span-2 relative group overflow-hidden rounded-3xl bg-surface-container-low min-h-[400px]">
+<div class="absolute inset-0 opacity-60 group-hover:scale-105 transition-transform duration-700">
+<img class="w-full h-full object-cover" data-alt="Modern electric high-performance sedan in a dark neon-lit studio setting with sleek metallic reflections and dramatic shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_sDnjMD3ICi99-djJKzpORO1rhNRFrSwPoD5ZkQ0J8Fu8q-8Ba_6dutztaU8MN_Z5Rp_noWRiApkJ_UleEPxIsIdkggqsjR4MPPhfUYLnHY4qunNVGNWT1TyBRYbGvMCfPdZ7r4ncY2dvoQoNeHRuxpxbSBBA89yyGXMAyIvRjVBs4XyJAYEFwua6wdhAvV6Dz7HstkBiU4KgYzpUGCFcK7_WF9d_77Ky-3G-h2rqrbSNoC_n3O20t1_6CN7Yrzosva0ddruBZn9u"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8 right-8 space-y-4">
+<div class="flex items-center gap-3">
+<span class="bg-primary text-on-primary-fixed px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">New Arrival</span>
+<span class="bg-secondary-container/40 backdrop-blur-md text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Electric</span>
+</div>
+<h3 class="font-headline text-4xl font-bold text-white max-w-md">2024 Porsche Taycan Turbo S Cross Turismo</h3>
+<div class="flex items-center gap-6">
+<div class="flex flex-col">
+<span class="text-[10px] text-neutral-500 uppercase font-bold tracking-widest">Acceleration</span>
+<span class="font-headline text-lg font-bold">2.4s (0-60)</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] text-neutral-500 uppercase font-bold tracking-widest">Price</span>
+<span class="font-headline text-lg font-bold text-primary">$197,500</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Editorial Card -->
+<div class="col-span-1 bg-surface-container-high rounded-3xl p-8 flex flex-col justify-between border border-outline-variant/5">
+<div class="space-y-6">
+<div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">bolt</span>
+</div>
+<h4 class="font-headline text-2xl font-bold text-white">Elite Charging Concierge</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Kinetic Gallery members receive complimentary access to our global hyper-charging network and 24/7 technical assistance for all electric luxury assets.</p>
+</div>
+<button class="mt-8 flex items-center gap-2 text-primary font-headline font-bold text-xs uppercase tracking-widest group">
+                            Learn More 
+                            <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<!-- Standard Grid Cards (Displaying some 'results') -->
+<div class="bg-surface-container-low rounded-3xl overflow-hidden group border border-outline-variant/10 hover:border-primary/30 transition-all">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500" data-alt="Classic silver Porsche 911 parked on a moody coastal road at dusk with misty atmospheric lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdVImIBM4y0eAHnV54sehIaueHRO6ax-JHRcSpehtoX2_FZ-vIkuKL9QVdg9eoMT0cCc4QXHLcpZkvIkPlMxBhbrj7oWMrVR_1gbizGSxsf_6ZruDwTJaApyzQ7bXAqLQzMypKPdJn7SBiYyBKaaPXFKiX3orp9C99W9RcTiis1D2-YiXA38k97Nf95Fn6Cd0Zh5JgMEzMGA0o2pkD7tMJqK0rAYSLaF11bNtNS_BzgwvK_1TX5J7acQHnblMQsnROPqem6TElpQoJ"/>
+</div>
+<div class="p-6 space-y-4">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">2022 • 12,400 mi</p>
+<h5 class="font-headline text-lg font-bold text-white">BMW M4 Competition</h5>
+</div>
+<button class="material-symbols-outlined text-neutral-600 hover:text-primary transition-colors">favorite</button>
+</div>
+<div class="flex justify-between items-center pt-2 border-t border-outline-variant/10">
+<span class="font-headline text-xl font-bold text-white">$78,900</span>
+<span class="text-[10px] font-bold text-secondary uppercase bg-secondary/10 px-2 py-1 rounded">AWD Performance</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-3xl overflow-hidden group border border-outline-variant/10 hover:border-primary/30 transition-all">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500" data-alt="Modern blue high-end sports car in a minimalist white architectural courtyard with harsh sunlight and clean shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3gxJnOr47g5Rsd9dBtw30AwKfo3eVvF4SkUEJ3g_kUz6xbT_6Dwc7uTdthljIhkvaOFwX1olxnLXajStKIje2xNwHSfEXPJ-aoKYwHoncq_ivovRMkA39xgbDmyeYpZL9sz8GFfiYUpN5cHpoOUdq_hOrydEZyFasUvBeJDhuOhstzaFhgAN4AGC-gHz6_3kTz5rGYrg3Nwgo_GFY5WIpcqSXf7Eyg2QTUljh2jlHQa-4TkZUXKwybfxubWdNP9hQ_pNARY3oIFuV"/>
+</div>
+<div class="p-6 space-y-4">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">2023 • 3,200 mi</p>
+<h5 class="font-headline text-lg font-bold text-white">Tesla Model S Plaid</h5>
+</div>
+<button class="material-symbols-outlined text-neutral-600 hover:text-primary transition-colors">favorite</button>
+</div>
+<div class="flex justify-between items-center pt-2 border-t border-outline-variant/10">
+<span class="font-headline text-xl font-bold text-white">$104,200</span>
+<span class="text-[10px] font-bold text-primary uppercase bg-primary/10 px-2 py-1 rounded">Electric Tri-Motor</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-3xl overflow-hidden group border border-outline-variant/10 hover:border-primary/30 transition-all">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500" data-alt="Luxury charcoal SUV driving through a mountain pass with snow peaks in the background and a moody overcast sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnAqASllhaAHqy385sPJVt9JDy-9gmUmaaW7U5cczVB78WBH70X1pw1Fh0hmtEnurzdRYNYacWLFfiSPmVTfWRZ_2uokmqbRHCC9WlfTFOiUd3f_70HU4us2wJOo-wffEgW2gaaFBupc4Etifjb7fRJSsDxEbmuYHjDYGKh9gs0zQPD2rB3IjCgPEJplCKtwAP-liQ9DCHBLwtZnK2F0UVe0B6xKfqyyykl3kgscn0fsaDSbXNuRpIShzYUv9kJjWKMiiFCsrmSGXt"/>
+</div>
+<div class="p-6 space-y-4">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">2024 • 0 mi</p>
+<h5 class="font-headline text-lg font-bold text-white">Hyundai IONIQ 6</h5>
+</div>
+<button class="material-symbols-outlined text-neutral-600 hover:text-primary transition-colors">favorite</button>
+</div>
+<div class="flex justify-between items-center pt-2 border-t border-outline-variant/10">
+<span class="font-headline text-xl font-bold text-white">$56,100</span>
+<span class="text-[10px] font-bold text-secondary uppercase bg-secondary/10 px-2 py-1 rounded">RWD Long Range</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Callout -->
+<div class="mt-16 p-12 rounded-[40px] bg-surface-container-highest flex flex-col md:flex-row items-center gap-12 border border-outline-variant/10">
+<div class="flex-1 space-y-6">
+<h2 class="font-headline text-4xl font-bold leading-tight">Didn't find your perfect match?</h2>
+<p class="text-on-surface-variant text-lg">Our Concierge team specializes in sourcing rare and bespoke automotive masterpieces that never hit the public market.</p>
+<button class="flex items-center gap-4 bg-white text-black px-8 py-4 rounded-full font-headline font-black uppercase tracking-widest text-sm hover:bg-primary transition-colors">
+                            Request Custom Search
+                        </button>
+</div>
+<div class="w-full md:w-1/3 aspect-square rounded-3xl overflow-hidden shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="Close-up of a luxury car interior featuring high-end leather, carbon fiber details, and soft ambient orange lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOhCVuKKdnA3kqgpiOb5xJ3ndCNUiUQC4ft7epwSSnkh8HyQ5VrCYp-FQQrMpyIGjoPdbVweoDWq1z163K9Lx9MF3umOIULvzr5sZBE2SywhixAEbIa8MTgsIY6vHM_0q-5JQJcN94_DGJNIJpN1aeQeRdIilAMC7ef73Tw28YsyJXE0w17OVhBxWgNTDksACDmCQLORZcPzKhl1VHxZdrwdJKB1YSJRIqPLCeNhoWwBmn-dftvy8ybXXXcnhAwRjeOEAD5l_uLuFd"/>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="bg-[#1F2020]/90 backdrop-blur-2xl fixed bottom-0 w-full z-50 lg:hidden rounded-t-2xl flex justify-around items-center h-20 px-6 pb-safe shadow-[0_-10px_30px_rgba(0,0,0,0.5)]">
+<button class="flex flex-col items-center justify-center text-neutral-500 active:bg-neutral-800 transition-all">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-tighter">Browse</span>
+</button>
+<button class="flex flex-col items-center justify-center text-[#FF9159] bg-[#FF9159]/10 rounded-xl px-4 py-2 haptic-feedback-on-tap">
+<span class="material-symbols-outlined">search</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-tighter">Search</span>
+</button>
+<button class="flex flex-col items-center justify-center text-neutral-500 active:bg-neutral-800 transition-all">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-tighter">Saved</span>
+</button>
+<button class="flex flex-col items-center justify-center text-neutral-500 active:bg-neutral-800 transition-all">
+<span class="material-symbols-outlined">person</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-tighter">Profile</span>
+</button>
+</nav>
+</body></html>
