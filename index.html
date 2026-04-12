@@ -5,22 +5,23 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#1E1E1E">
+<meta name="theme-color" content="#0E0E0E">
 <meta name="referrer" content="no-referrer">
 <link rel="manifest" href="manifest.json">
 <title>Encar Search</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block');
 :root{
-  --bg:#1E1E1E;--s1:#252525;--s2:#2E2E2E;--s3:#373737;
-  --bdr:#3A3A3A;--bdr2:#454545;
-  --txt:#ECECEC;--muted:#9A9A9A;--dim:#666;
-  --accent:#E8640A;--accent-dim:#E8640A20;--accent-light:#FF8033;
-  --blue:#6BA3D6;--blue-dim:#6BA3D615;
-  --orange:#E8640A;--orange-dim:#E8640A15;
+  --bg:#0E0E0E;--s1:#131313;--s2:#1F2020;--s3:#262626;
+  --bdr:#2A2A2A;--bdr2:#383838;
+  --txt:#F0F0F0;--muted:#8A8A8A;--dim:#555;
+  --accent:#FF9159;--accent-dim:#FF915920;--accent-light:#FF7A2F;
+  --blue:#669DFF;--blue-dim:#669DFF15;
+  --orange:#FF9159;--orange-dim:#FF915915;
   --green:#4CAF7D;--green-dim:#4CAF7D15;
   --red:#D95F5F;
-  --r:10px;--rsm:7px;
+  --r:12px;--rsm:8px;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--txt);font-size:14px;min-height:100vh;overflow-x:hidden}
@@ -29,7 +30,9 @@ body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--txt
 .hdr{padding:14px 16px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--bg);z-index:100}
 .logo{font-size:17px;font-weight:700;letter-spacing:-0.5px;display:flex;align-items:center;gap:6px}
 .logo-dot{color:var(--accent)}
-
+.mode-pills{display:flex;background:var(--s2);border-radius:20px;padding:3px;border:1px solid var(--bdr)}
+.pill{padding:5px 14px;border-radius:16px;font-size:11px;font-weight:600;cursor:pointer;border:none;background:none;color:var(--muted);font-family:'Space Grotesk',sans-serif;transition:all .2s}
+.pill.on{background:var(--accent);color:#fff}
 
 /* BOTTOM NAV */
 .bnav{position:fixed;bottom:0;left:0;right:0;background:var(--s1);border-top:1px solid var(--bdr);display:flex;z-index:100;padding-bottom:env(safe-area-inset-bottom)}
@@ -44,13 +47,18 @@ body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--txt
 /* ── SEARCH ────────────────────────────────────────────── */
 .sp{padding:14px 16px}
 
-/* AI MINI BAR */
-.ai-mini{display:flex;gap:8px;margin-bottom:10px;background:var(--s1);border:1px solid var(--bdr);border-left:2px solid var(--accent);border-radius:var(--r);padding:9px 12px;align-items:center}
-.ai-mini-ico{color:var(--accent);font-size:14px;flex-shrink:0}
-.ai-mini input{flex:1;background:none;border:none;color:var(--txt);font-family:'Space Grotesk',sans-serif;font-size:13px;outline:none}
-.ai-mini input::placeholder{color:var(--dim)}
-.ai-mini button{padding:6px 14px;background:var(--accent);color:#fff;border:none;border-radius:6px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;cursor:pointer;flex-shrink:0}
-.ai-mini button:disabled{opacity:.4;cursor:not-allowed}
+/* AI SEARCH */
+.ai-box{background:var(--s1);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden;margin-bottom:4px}
+.ai-top{padding:10px 14px 0;display:flex;align-items:center;gap:6px}
+.ai-ico{font-size:13px;color:var(--accent)}
+.ai-lbl{font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.8px}
+.ai-ta{width:100%;background:none;border:none;color:var(--txt);font-family:'Space Grotesk',sans-serif;font-size:14px;padding:10px 14px 12px;resize:none;min-height:72px;outline:none;line-height:1.5}
+.ai-ta::placeholder{color:var(--dim)}
+.ai-footer{padding:8px 14px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--bdr)}
+.ai-hint{font-size:10px;color:var(--dim)}
+.ai-go{padding:7px 16px;background:var(--accent);color:#fff;border:none;border-radius:6px;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:opacity .2s}
+.ai-go:active{opacity:.7}
+.ai-go:disabled{opacity:.4;cursor:not-allowed}
 
 /* PARSED PARAMS */
 .parsed-box{margin-bottom:14px;background:var(--s1);border:1px solid var(--bdr);border-left:2px solid var(--accent);border-radius:var(--rsm);padding:10px 12px;display:none}
@@ -59,12 +67,15 @@ body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--txt
 .pb-tags{display:flex;flex-wrap:wrap;gap:4px}
 .pt{display:inline-flex;align-items:center;gap:3px;background:var(--s3);border-radius:4px;padding:3px 8px}
 .pt-k{font-size:10px;color:var(--muted)}
-.pt-v{font-size:10px;color:var(--blue);font-family:'JetBrains Mono',monospace;font-weight:500}
+.pt-v{font-size:10px;color:var(--blue);font-family:'Inter',monospace;font-weight:500}
 
-
+/* OR */
+.or{display:flex;align-items:center;gap:8px;margin:12px 0;color:var(--dim);font-size:10px;font-weight:700}
+.or::before,.or::after{content:'';flex:1;height:1px;background:var(--bdr)}
 
 /* STRUCT SEARCH */
-.ss{display:block}
+.ss{display:none}
+.ss.on{display:block}
 /* market row removed */
 
 .fg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -95,11 +106,10 @@ input.fi::placeholder{color:var(--dim)}
 .sl-track{display:flex;height:100%;transition:transform .3s}
 .sl-item{min-width:100%;height:100%}
 .sl-item img{width:100%;height:100%;object-fit:cover}
-.sl-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;color:var(--dim);overflow:hidden}
-.sl-ph img{width:100%;height:100%;object-fit:cover;display:block}
+.sl-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;color:var(--dim)}
 .sl-btn{position:absolute;top:50%;transform:translateY(-50%);width:26px;height:26px;background:rgba(0,0,0,.65);border:none;border-radius:50%;color:#fff;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2}
 .sl-btn.p{left:7px}.sl-btn.n{right:7px}
-.sl-cnt{position:absolute;top:7px;right:7px;background:rgba(0,0,0,.7);color:#fff;font-size:10px;padding:2px 6px;border-radius:8px;z-index:2;font-family:'JetBrains Mono',monospace}
+.sl-cnt{position:absolute;top:7px;right:7px;background:rgba(0,0,0,.7);color:#fff;font-size:10px;padding:2px 6px;border-radius:8px;z-index:2;font-family:'Inter',sans-serif}
 .sl-dots{position:absolute;bottom:5px;left:50%;transform:translateX(-50%);display:flex;gap:3px;z-index:2}
 .sd{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.35);transition:background .2s}
 .sd.on{background:var(--accent)}
@@ -108,14 +118,15 @@ input.fi::placeholder{color:var(--dim)}
 .cb{padding:11px 13px}
 .ct{font-size:14px;font-weight:700;letter-spacing:-.3px;margin-bottom:1px}
 .cba{font-size:11px;color:var(--muted);margin-bottom:9px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.cs{display:flex;background:var(--s2);border-radius:var(--rsm);overflow:hidden;margin-bottom:9px}
-.csi{flex:1;text-align:center;padding:7px 4px;border-right:1px solid var(--bdr)}
+.cs{display:flex;flex-wrap:wrap;background:var(--s2);border-radius:var(--rsm);overflow:hidden;margin-bottom:9px}
+.csi{display:flex;align-items:center;justify-content:center;gap:3px;flex:1;min-width:max-content;padding:6px 6px;border-right:1px solid var(--bdr)}
 .csi:last-child{border-right:none}
-.csv{font-size:11px;font-weight:700;font-family:'JetBrains Mono',monospace}
+.cs-ico{font-family:'Material Symbols Outlined';font-size:13px;color:var(--dim);font-variation-settings:'opsz' 20,'wght' 400,'FILL' 0,'GRAD' 0}
+.csv{font-size:10px;font-weight:600;font-family:'Inter',sans-serif}
 .csl{font-size:9px;color:var(--dim);margin-top:1px;text-transform:uppercase;letter-spacing:.4px}
 .pr{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
-.pu{font-size:21px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--accent);letter-spacing:-1px}
-.prr{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.pu{font-size:20px;font-weight:700;font-family:'Space Grotesk',sans-serif;color:var(--accent);letter-spacing:-0.5px}
+.prr{font-size:11px;color:var(--muted);font-family:'Inter',sans-serif}
 .fav{width:34px;height:34px;background:var(--s3);border:1px solid var(--bdr);border-radius:7px;cursor:pointer;font-size:17px;display:flex;align-items:center;justify-content:center;transition:all .2s}
 .fav.on{background:var(--orange-dim);border-color:var(--orange)}
 
@@ -138,7 +149,7 @@ input.fi::placeholder{color:var(--dim)}
 .spin{width:36px;height:36px;border:2px solid var(--bdr2);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 14px}
 @keyframes spin{to{transform:rotate(360deg)}}
 .ld-txt{color:var(--muted);font-size:13px}
-.ld-sub{color:var(--dim);font-size:10px;margin-top:3px;font-family:'JetBrains Mono',monospace}
+.ld-sub{color:var(--dim);font-size:10px;margin-top:3px;font-family:'Inter',sans-serif}
 
 /* EMPTY */
 .emp{display:none;padding:60px 20px;text-align:center}
@@ -162,7 +173,7 @@ input.fi::placeholder{color:var(--dim)}
 .srow:last-child{border-bottom:none}
 .srl{font-size:12px;font-weight:600;margin-bottom:5px;display:flex;align-items:center;gap:6px}
 .srs{font-size:10px;color:var(--muted);margin-bottom:6px;line-height:1.4}
-.si{width:100%;background:var(--s2);border:1px solid var(--bdr);border-radius:var(--rsm);color:var(--txt);font-family:'JetBrains Mono',monospace;font-size:12px;padding:8px 11px;outline:none;transition:border-color .2s}
+.si{width:100%;background:var(--s2);border:1px solid var(--bdr);border-radius:var(--rsm);color:var(--txt);font-family:'Inter',sans-serif;font-size:12px;padding:8px 11px;outline:none;transition:border-color .2s}
 .si:focus{border-color:var(--accent)}
 .sdot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--dim)}
 .sdot.ok{background:var(--green)}
@@ -176,7 +187,7 @@ input.fi::placeholder{color:var(--dim)}
 
 /* SPEC TAGS */
 .car-spec-row{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
-.spec-tag{display:inline-flex;align-items:center;background:var(--s3);border:1px solid var(--bdr);border-radius:4px;padding:2px 7px;font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace;white-space:nowrap}
+.spec-tag{display:inline-flex;align-items:center;background:var(--s3);border:1px solid var(--bdr);border-radius:4px;padding:2px 7px;font-size:10px;color:var(--muted);font-family:'Inter',sans-serif;white-space:nowrap}
 .spec-engine{color:var(--accent);border-color:var(--accent)}
 .spec-dim{color:var(--blue)}
 
@@ -191,19 +202,38 @@ input.fi::placeholder{color:var(--dim)}
 .badge-group-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
 .bg-btn{padding:5px 10px;background:var(--s2);border:1px solid var(--bdr);border-radius:6px;color:var(--muted);font-size:11px;font-family:'Space Grotesk',sans-serif;cursor:pointer;transition:all .2s;white-space:nowrap}
 .bg-btn.on{background:var(--accent-dim);border-color:var(--accent);color:var(--accent)}
+
+/* MATERIAL SYMBOLS */
+.msym{font-family:'Material Symbols Outlined';font-size:20px;display:block;font-variation-settings:'opsz' 24,'wght' 400,'FILL' 0,'GRAD' 0;line-height:1}
+
+/* HEADER ICON BUTTON */
+.hdr-ico{background:none;border:none;cursor:pointer;color:var(--muted);padding:4px;display:flex;align-items:center;justify-content:center;border-radius:8px;transition:color .2s}
+.hdr-ico:hover{color:var(--txt)}
+
+/* FLOATING FAV BUTTON */
+.fav-float{position:absolute;top:8px;right:8px;z-index:3;width:30px;height:30px;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);border:none;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.fav-float.on{background:rgba(255,80,80,.25)}
+
+/* CARD LAYOUT — EDITORIAL */
+.ct-maker{font-size:9px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.8px;margin-bottom:3px}
+.ct-row{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px}
+.ct-price-block{text-align:right;flex-shrink:0}
 </style>
 </head>
 <body>
 
 <div class="hdr">
-  <div class="logo">encar<span class="logo-dot" style="color:var(--accent)">.</span>ai</div>
+  <div class="logo">encar.ai</div>
+  <button class="hdr-ico" onclick="goView('search')" title="Поиск">
+    <span class="msym">tune</span>
+  </button>
 </div>
 
 <div class="bnav">
-  <button class="nb on" id="nSearch" onclick="goView('search')"><div class="ni">🔍</div>Поиск</button>
-  <button class="nb" id="nResults" onclick="goView('results')"><div class="ni">🚗</div>Авто</button>
-  <button class="nb" id="nFavs" onclick="goView('favs')"><div class="ni">❤️</div>Избранное</button>
-  <button class="nb" id="nSettings" onclick="goView('settings')"><div class="ni">⚙️</div>Настройки</button>
+  <button class="nb on" id="nSearch" onclick="goView('search')"><span class="msym">search</span>Поиск</button>
+  <button class="nb" id="nResults" onclick="goView('results')"><span class="msym">directions_car</span>Авто</button>
+  <button class="nb" id="nFavs" onclick="goView('favs')"><span class="msym">favorite</span>Избранное</button>
+  <button class="nb" id="nSettings" onclick="goView('settings')"><span class="msym">settings</span>Настройки</button>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -215,7 +245,7 @@ input.fi::placeholder{color:var(--dim)}
   <!-- AI MINI BAR -->
   <div class="ai-mini">
     <span class="ai-mini-ico">✦</span>
-    <input type="text" id="aiQ" placeholder="AI: BMW 5 серии 2022, до $40k, дизель...">
+    <input type="text" id="aiQ" placeholder="AI поиск: BMW 5 серии 2022, до $40k, дизель...">
     <button onclick="runAI()" id="aiGoBtn">→</button>
   </div>
   <div class="parsed-box" id="parsedBox">
@@ -224,6 +254,9 @@ input.fi::placeholder{color:var(--dim)}
   </div>
 
   <!-- FILTERS -->
+  <div class="filter-hdr">
+    <span class="filter-title">Параметры поиска</span>
+  </div>
   <div class="ss" id="stWrap">
 <div class="fg">
       <div>
@@ -358,7 +391,7 @@ input.fi::placeholder{color:var(--dim)}
   <div class="rh">
     <div class="rc">Найдено: <b id="rCount">0</b></div>
     <select class="sort-sel" id="sortSel" onchange="doSort()">
-      <option value="date">По дате</option>
+      <option value="date">Новые</option>
       <option value="pa">Цена ↑</option>
       <option value="pd">Цена ↓</option>
       <option value="mil">Пробег ↑</option>
@@ -386,7 +419,7 @@ input.fi::placeholder{color:var(--dim)}
 <div class="view" id="vFavs">
   <div class="rh">
     <div class="rc">Избранное: <b id="favCount">0</b></div>
-    <button onclick="clearFavs()" style="font-size:11px;color:var(--muted);background:none;border:none;cursor:pointer;font-family:'Space Grotesk',sans-serif">Очистить всё</button>
+    <button onclick="clearFavs()" style="font-size:11px;font-weight:700;letter-spacing:.05em;color:var(--muted);background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;text-transform:uppercase">Очистить</button>
   </div>
   <div class="cars" id="favsList"></div>
   <div class="emp" id="favsEmp">
@@ -399,7 +432,7 @@ input.fi::placeholder{color:var(--dim)}
 <!-- ═══ SETTINGS ═════════════════════════════════════════ -->
 <div class="view" id="vSettings">
 <div class="sw">
-  <div class="st">🤖 YandexGPT</div>
+  <div class="st">YandexGPT</div>
   <div class="scard">
     <div class="srow">
       <div class="srl"><span class="sdot" id="sDotKey"></span>API Key</div>
@@ -412,7 +445,7 @@ input.fi::placeholder{color:var(--dim)}
     </div>
   </div>
 
-  <div class="st">📊 Поиск</div>
+  <div class="st">Поиск</div>
   <div class="scard">
     <div class="srow">
       <div class="srl">Результатов за раз</div>
@@ -432,7 +465,7 @@ input.fi::placeholder{color:var(--dim)}
     </div>
   </div>
 
-  <button class="sv-btn" onclick="saveSettings()">💾 Сохранить</button>
+  <button class="sv-btn" onclick="saveSettings()">Сохранить настройки</button>
 
   <div class="about" style="margin-top:14px">
     <b>Encar.ai — поиск авто в Корее</b><br>
@@ -534,18 +567,18 @@ const MODELGROUPS = {
     ['mulsanne', 'Mulsanne', 'Mulsanne'],
   ],
   bmw:[
-    ['1series', '1시리즈', '1 Series'],
-    ['1m', '1M쿠페', '1M Coupe'],
-    ['2series', '2시리즈', '2 Series'],
-    ['3series', '3시리즈', '3 Series'],
-    ['4series', '4시리즈', '4 Series'],
-    ['5series', '5시리즈', '5 Series'],
-    ['6series', '6시리즈', '6 Series'],
-    ['7series', '7시리즈', '7 Series'],
-    ['8series', '8시리즈', '8 Series'],
-    ['granturismo', '그란 투리스모', 'Gran Turismo'],
-    ['mcouperoadster', 'M쿠페-로드스터', 'M Coupe-Roadster'],
-    ['mseries', 'M시리즈', 'M Series'],
+    ['1series', '1-Series', '1-Series'],
+    ['1m', '1M', '1M'],
+    ['2series', '2-Series', '2-Series'],
+    ['3series', '3-Series', '3-Series'],
+    ['4series', '4-Series', '4-Series'],
+    ['5series', '5-Series', '5-Series'],
+    ['6series', '6-Series', '6-Series'],
+    ['7series', '7-Series', '7-Series'],
+    ['8series', '8-Series', '8-Series'],
+    ['granturismo', 'Gran Turismo', 'Gran Turismo'],
+    ['mcouperoadster', 'M Coupe-Roadster', 'M Coupe-Roadster'],
+    ['mseries', 'M-Series', 'M-Series'],
     ['m2', 'M2', 'M2'],
     ['m3', 'M3', 'M3'],
     ['m4', 'M4', 'M4'],
@@ -963,36 +996,33 @@ const MODELGROUPS = {
   ],
   mercedes:[
     ['190class', '190-Class', '190-Class'],
-    ['aclass', 'A클래스', 'A-Class'],
+    ['aclass', 'A-Class', 'A-Class'],
     ['amggt', 'AMG GT', 'AMG GT'],
-    ['cclass', 'C클래스', 'C-Class'],
-    ['clclass', 'CL', 'CL-Class'],
-    ['claclass', 'CLA', 'CLA-Class'],
-    ['clkclass', 'CLK', 'CLK-Class'],
-    ['clsclass', 'CLS', 'CLS-Class'],
-    ['eclass', 'E클래스', 'E-Class'],
-    ['gclass', 'G클래스', 'G-Class'],
-    ['glclass', 'GL', 'GL-Class'],
-    ['glaclass', 'GLA', 'GLA-Class'],
-    ['glbclass', 'GLB', 'GLB-Class'],
-    ['glcclass', 'GLC', 'GLC-Class'],
-    ['gleclass', 'GLE', 'GLE-Class'],
-    ['glkclass', 'GLK', 'GLK-Class'],
-    ['glsclass', 'GLS', 'GLS-Class'],
-    ['mclass', 'M클래스', 'M-Class'],
-    ['rclass', 'R클래스', 'R-Class'],
-    ['sclass', 'S클래스', 'S-Class'],
+    ['cclass', 'C-Class', 'C-Class'],
+    ['clclass', 'CL-Class', 'CL-Class'],
+    ['claclass', 'CLA-Class', 'CLA-Class'],
+    ['clkclass', 'CLK-Class', 'CLK-Class'],
+    ['clsclass', 'CLS-Class', 'CLS-Class'],
+    ['eclass', 'E-Class', 'E-Class'],
+    ['gclass', 'G-Class', 'G-Class'],
+    ['glclass', 'GL-Class', 'GL-Class'],
+    ['glaclass', 'GLA-Class', 'GLA-Class'],
+    ['glcclass', 'GLC-Class', 'GLC-Class'],
+    ['gleclass', 'GLE-Class', 'GLE-Class'],
+    ['glkclass', 'GLK-Class', 'GLK-Class'],
+    ['glsclass', 'GLS-Class', 'GLS-Class'],
+    ['mclass', 'M-class', 'M-class'],
+    ['myb', 'My B', 'My B'],
+    ['rclass', 'R-Class', 'R-Class'],
+    ['sclass', 'S-Class', 'S-Class'],
     ['selsec', 'SEL-SEC', 'SEL-SEC'],
-    ['slclass', 'SL', 'SL-Class'],
-    ['slcclass', 'SLC', 'SLC-Class'],
-    ['slkclass', 'SLK', 'SLK-Class'],
+    ['slclass', 'SL-Class', 'SL-Class'],
+    ['slcclass', 'SLC-Class', 'SLC-Class'],
+    ['slkclass', 'SLK-Class', 'SLK-Class'],
     ['slr', 'SLR', 'SLR'],
     ['slsamg', 'SLS AMG', 'SLS AMG'],
     ['sprinter', 'Sprinter', 'Sprinter'],
-    ['vclass', 'V클래스', 'V-Class'],
-    ['eqc', 'EQC', 'EQC'],
-    ['eqe', 'EQE', 'EQE'],
-    ['eqs', 'EQS', 'EQS'],
+    ['vclass', 'V-Class', 'V-Class'],
   ],
   mini:[
     ['clubman', 'Clubman', 'Clubman'],
@@ -1308,7 +1338,15 @@ function goView(v){
   window.scrollTo(0,0);
   if(v==='favs') renderFavs();
 }
-// setMode removed — single unified search page
+function setMode(m){
+  STATE.mode=m;
+  document.getElementById('pAI').classList.toggle('on', m==='ai');
+  document.getElementById('pST').classList.toggle('on', m==='struct');
+  document.getElementById('aiWrap').style.display  = m==='ai'?'block':'none';
+  document.getElementById('orDiv').style.display   = 'none';
+  document.getElementById('stWrap').classList.toggle('on', m==='struct');
+}
+// setMkt removed — car_type auto-detected from manufacturer
 
 function onMakerChange(){
   const mk = document.getElementById('fMaker').value;
@@ -1355,16 +1393,15 @@ async function runAI(){
   if(!q){toast('Введите запрос');return;}
   if(!CFG.key||!CFG.folder){toast('⚙️ Укажите API ключи в Настройках');goView('settings');return;}
   const btn=document.getElementById('aiGoBtn');
-  btn.disabled=true; btn.textContent='…';
+  btn.disabled=true; btn.textContent='...';
   document.getElementById('parsedBox').classList.remove('on');
   try{
     const p=await parseNL(q);
     if(!p){toast('Не удалось распознать запрос');return;}
-    fillFormFromParams(p);
     showParsed(p);
     await doSearch(p);
   }catch(e){toast('❌ '+e.message);}
-  finally{btn.disabled=false;btn.textContent='→';}
+  finally{btn.disabled=false;btn.textContent='Найти →';}
 }
 
 async function parseNL(q){
@@ -1405,45 +1442,6 @@ async function parseNL(q){
   return JSON.parse(m[0]);
 }
 
-
-// ══════════════════════════════════════════════════════════
-//  FILL FORM FROM AI PARAMS
-// ══════════════════════════════════════════════════════════
-function fillFormFromParams(p){
-  // Марка
-  const makerSel = document.getElementById('fMaker');
-  if(p.manufacturer && makerSel.querySelector(`option[value="${p.manufacturer}"]`)){
-    makerSel.value = p.manufacturer;
-    onMakerChange(); // populate models dropdown
-    // Модель — найти по model_group (Korean name)
-    if(p.model_group){
-      const modelSel = document.getElementById('fModel');
-      const entries = MODELGROUPS[p.manufacturer] || [];
-      const entry = entries.find(([,mg]) => mg === p.model_group);
-      if(entry) modelSel.value = entry[0];
-    }
-  }
-  // Год
-  if(p.year_from){ document.getElementById('fYF').value = p.year_from; }
-  if(p.year_to)  { document.getElementById('fYT').value = p.year_to; }
-  // Пробег
-  if(p.mileage_max){
-    const milSel = document.getElementById('fMil');
-    const vals = [30000,50000,80000,100000,150000,200000,300000];
-    const best = vals.find(v => v >= p.mileage_max) || 300000;
-    milSel.value = best;
-  }
-  // Цена
-  if(p.price_max_manwon){
-    document.getElementById('fPMax').value = Math.round(p.price_max_manwon * 10000 / 1340);
-  }
-  if(p.price_min_manwon){
-    document.getElementById('fPMin').value = Math.round(p.price_min_manwon * 10000 / 1340);
-  }
-  // Топливо
-  if(p.fuel){ document.getElementById('fFuel').value = p.fuel; }
-}
-
 function showParsed(p){
   const map={
     'Рынок':       p.car_type==='korean'?'🇰🇷 Внутренний':'🌍 Иностранный',
@@ -1466,6 +1464,7 @@ function showParsed(p){
 //  STRUCTURED SEARCH
 // ══════════════════════════════════════════════════════════
 function runSearch(){
+  if(STATE.mode==='ai'){runAI();return;}
   const mk  = document.getElementById('fMaker').value;
   const mdl = document.getElementById('fModel').value;
 
@@ -1689,15 +1688,12 @@ function parseCar(c){
   // Формат: /carpicture/carpicture10/pic1234/12345678_001.jpg
   const photoField = c.Photo || c.photo || null;
   const photos = [];
-  let thumbnail = '';
   if(photoField){
     const photoBase = 'https://ci.encar.com' + photoField;
-    // Strip photo index + extension, then strip any trailing underscores
-    // API Photo field may end with '_001.jpg', '__001.jpg', or just '_'
-    const base = photoBase.replace(/_+\d{3}\.jpg.*$/i, '').replace(/_+$/, '');
-    thumbnail = `${base}_001.jpg?impolicy=heightRate&rh=192&cw=320&ch=192&cg=Center`;
+    // Убираем номер и расширение из конца, генерируем 1-8
+    const base = photoBase.replace(/_\d{3}\.jpg.*$/i, '');
     for(let i=1;i<=8;i++){
-      photos.push(`${base}_${String(i).padStart(3,'0')}.jpg?impolicy=heightRate`);
+      photos.push(`${base}_${String(i).padStart(3,'0')}.jpg`);
     }
   }
   // Тип привода из BadgeDetail или Badge
@@ -1735,7 +1731,6 @@ function parseCar(c){
     usd:          Math.round(pmw*10000/1340),
     rub:          Math.round(pmw*10000*(CFG.krw||0.0675)),
     photos:       photos,
-    thumbnail:    thumbnail,
     ai:           '',
   };
 }
@@ -1807,47 +1802,51 @@ function makeCard(c, idx, src){
   const isFav=!!STATE.favs[c.id];
   const div=document.createElement('div');
   div.className='cc'; div.id=`cc-${c.id}`;
+  const milK=(c.mileage_km/1000).toFixed(0);
+  const fuelIco=c.fuel==='전기'?'bolt':c.fuel==='가솔린+전기'?'ev_station':'local_gas_station';
   div.innerHTML=`
-    <div class="sl" id="sl-${c.id}">
+    <div class="sl" id="sl-${c.id}" onclick="loadPhotos('${c.id}')">
       <div class="sl-ph" id="slPH-${c.id}">${c.thumbnail?`<img src="${c.thumbnail}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">`:'🚗'}</div>
       <div class="sl-track" id="slT-${c.id}" style="display:none"></div>
-      <button class="sl-btn p" id="slP-${c.id}" onclick="slide('${c.id}',-1)" style="display:none">‹</button>
-      <button class="sl-btn n" id="slN-${c.id}" onclick="slide('${c.id}',1)"  style="display:none">›</button>
+      <button class="sl-btn p" id="slP-${c.id}" onclick="event.stopPropagation();slide('${c.id}',-1)" style="display:none">‹</button>
+      <button class="sl-btn n" id="slN-${c.id}" onclick="event.stopPropagation();slide('${c.id}',1)"  style="display:none">›</button>
       <div class="sl-cnt" id="slC-${c.id}" style="display:none">1/1</div>
       <div class="sl-dots" id="slD-${c.id}"></div>
+      <button class="fav-float ${isFav?'on':''}" id="fav-${c.id}" onclick="event.stopPropagation();toggleFav('${c.id}',${idx},'${src}')" title="Избранное">
+        ${isFav?'❤️':'🤍'}
+      </button>
     </div>
     <div class="cb">
-      <div class="ct">${c.manufacturer} ${c.model}</div>
-      <div class="cba">${c.badge}</div>
-      <div class="cs">
-        <div class="csi"><div class="csv">${c.year}.${c.month}</div><div class="csl">Год</div></div>
-        <div class="csi"><div class="csv">${c.mileage_km.toLocaleString()}</div><div class="csl">км</div></div>
-        <div class="csi"><div class="csv">${c.fuel_ru||c.fuel||'—'}</div><div class="csl">Топливо</div></div>
-        <div class="csi"><div class="csv">${c.drive||c.region||'—'}</div><div class="csl">${c.drive?'Привод':'Регион'}</div></div>
+      <div class="ct-maker">${c.manufacturer}</div>
+      <div class="ct-row">
+        <div style="min-width:0">
+          <div class="ct">${c.model}</div>
+          <div class="cba">${c.badge||c.badgeDetail||'—'}</div>
+        </div>
+        <div class="ct-price-block">
+          <div class="pu">$${c.usd.toLocaleString()}</div>
+          <div class="prr">≈ ${Math.round(c.rub/1000).toLocaleString()}к ₽</div>
+        </div>
       </div>
-      ${(c.badge||c.badgeDetail)?`<div class="car-spec-row">
-        ${c.badge?`<span class="spec-tag">${c.badge}</span>`:''}
-        ${c.badgeDetail?`<span class="spec-tag spec-engine">${c.badgeDetail}</span>`:''}
+      <div class="cs">
+        <div class="csi"><span class="cs-ico">calendar_month</span><span class="csv">${c.year}.${c.month}</span></div>
+        <div class="csi"><span class="cs-ico">speed</span><span class="csv">${milK}k км</span></div>
+        <div class="csi"><span class="cs-ico">${fuelIco}</span><span class="csv">${c.fuel_ru||c.fuel||'—'}</span></div>
+        ${c.drive?`<div class="csi"><span class="cs-ico">settings_input_component</span><span class="csv">${c.drive}</span></div>`:''}
+        ${c.region?`<div class="csi"><span class="cs-ico">location_on</span><span class="csv">${c.region}</span></div>`:''}
+      </div>
+      ${(c.displacement||c.gearbox)?`<div class="car-spec-row">
         ${c.displacement?`<span class="spec-tag spec-dim">${c.displacement}</span>`:''}
         ${c.gearbox?`<span class="spec-tag">${c.gearbox}</span>`:''}
+        ${c.badgeDetail?`<span class="spec-tag spec-engine">${c.badgeDetail}</span>`:''}
       </div>`:''}
-      <div class="pr">
-        <div>
-          <div class="pu">$${c.usd.toLocaleString()}</div>
-          <div class="prr">≈ ${c.rub.toLocaleString()} ₽</div>
-        </div>
-        <button class="fav ${isFav?'on':''}" id="fav-${c.id}" onclick="toggleFav('${c.id}',${idx},'${src}')">
-          ${isFav?'❤️':'🤍'}
-        </button>
-      </div>
       <div class="air" id="air-${c.id}">
         <div class="airl">✦ YandexGPT</div>
         <div class="airt" id="airt-${c.id}"></div>
       </div>
       <div class="cbtns">
-        <button class="cb2 blue" id="aib-${c.id}" onclick="aiOne('${c.id}',${idx},'${src}')">🤖 Анализ</button>
-        <button class="cb2" onclick="loadPhotos('${c.id}')">📸 Фото</button>
-        <a class="cb2 prim" href="${c.url}" target="_blank">Открыть</a>
+        <button class="cb2 blue" id="aib-${c.id}" onclick="aiOne('${c.id}',${idx},'${src}')">✦ AI</button>
+        <a class="cb2 prim" href="${c.url}" target="_blank">Открыть →</a>
       </div>
     </div>`;
   return div;
