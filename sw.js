@@ -1,4 +1,4 @@
-const CACHE = 'encar-v3';
+const CACHE = 'encar-v4';
 const ASSETS = ['/Search/index.html', '/Search/manifest.json'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));

@@ -74,8 +74,7 @@ body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--txt
 .or::before,.or::after{content:'';flex:1;height:1px;background:var(--bdr)}
 
 /* STRUCT SEARCH */
-.ss{display:none}
-.ss.on{display:block}
+.ss{display:block}
 /* market row removed */
 
 .fg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -218,6 +217,42 @@ input.fi::placeholder{color:var(--dim)}
 .ct-maker{font-size:9px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.8px;margin-bottom:3px}
 .ct-row{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px}
 .ct-price-block{text-align:right;flex-shrink:0}
+
+/* AI MINI BAR */
+.ai-mini{display:flex;gap:8px;margin-bottom:12px;background:var(--s1);border:1px solid var(--bdr);border-left:2px solid var(--accent);border-radius:var(--r);padding:9px 12px;align-items:center}
+.ai-mini-ico{color:var(--accent);font-size:14px;flex-shrink:0}
+.ai-mini input{flex:1;background:none;border:none;color:var(--txt);font-family:'Space Grotesk',sans-serif;font-size:13px;outline:none;min-width:0}
+.ai-mini input::placeholder{color:var(--dim)}
+.ai-mini button{padding:6px 14px;background:var(--accent);color:#fff;border:none;border-radius:6px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;cursor:pointer;flex-shrink:0}
+.ai-mini button:disabled{opacity:.4;cursor:not-allowed}
+
+/* FILTER HEADER */
+.filter-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.filter-title{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.9px}
+
+/* DESKTOP RESPONSIVE */
+@media(min-width:1024px){
+  body{font-size:14px}
+  .hdr{padding:18px 32px}
+  .logo{font-size:20px}
+  .bnav{display:none}
+  .view{padding-bottom:24px;max-width:1440px;margin:0 auto}
+  .sp{padding:28px 32px;max-width:720px;margin:0 auto}
+  .rh{padding:16px 32px}
+  .cars{padding:16px 32px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .cars .cc{margin-bottom:0}
+  .sw{padding:28px 32px;max-width:720px;margin:0 auto}
+  .fg{grid-template-columns:1fr 1fr 1fr 1fr;gap:10px}
+  .fg>div:nth-child(-n+4){grid-column:span 1}
+  .fg-full{grid-column:1/-1}
+  .go-btn{max-width:280px;margin:18px auto 0;display:flex}
+}
+@media(min-width:1440px){
+  .cars{grid-template-columns:repeat(3,1fr)}
+}
+@media(min-width:1920px){
+  .cars{grid-template-columns:repeat(4,1fr)}
+}
 </style>
 </head>
 <body>
@@ -567,18 +602,18 @@ const MODELGROUPS = {
     ['mulsanne', 'Mulsanne', 'Mulsanne'],
   ],
   bmw:[
-    ['1series', '1-Series', '1-Series'],
+    ['1series', '1시리즈', '1 Series'],
     ['1m', '1M', '1M'],
-    ['2series', '2-Series', '2-Series'],
-    ['3series', '3-Series', '3-Series'],
-    ['4series', '4-Series', '4-Series'],
-    ['5series', '5-Series', '5-Series'],
-    ['6series', '6-Series', '6-Series'],
-    ['7series', '7-Series', '7-Series'],
-    ['8series', '8-Series', '8-Series'],
-    ['granturismo', 'Gran Turismo', 'Gran Turismo'],
+    ['2series', '2시리즈', '2 Series'],
+    ['3series', '3시리즈', '3 Series'],
+    ['4series', '4시리즈', '4 Series'],
+    ['5series', '5시리즈', '5 Series'],
+    ['6series', '6시리즈', '6 Series'],
+    ['7series', '7시리즈', '7 Series'],
+    ['8series', '8시리즈', '8 Series'],
+    ['granturismo', '그란 투리스모', 'Gran Turismo'],
     ['mcouperoadster', 'M Coupe-Roadster', 'M Coupe-Roadster'],
-    ['mseries', 'M-Series', 'M-Series'],
+    ['mseries', 'M시리즈', 'M Series'],
     ['m2', 'M2', 'M2'],
     ['m3', 'M3', 'M3'],
     ['m4', 'M4', 'M4'],
@@ -995,34 +1030,34 @@ const MODELGROUPS = {
     ['mp412c', 'MP4-12C', 'MP4-12C'],
   ],
   mercedes:[
-    ['190class', '190-Class', '190-Class'],
-    ['aclass', 'A-Class', 'A-Class'],
+    ['190class', '190클래스', '190-Class'],
+    ['aclass', 'A클래스', 'A-Class'],
     ['amggt', 'AMG GT', 'AMG GT'],
-    ['cclass', 'C-Class', 'C-Class'],
-    ['clclass', 'CL-Class', 'CL-Class'],
-    ['claclass', 'CLA-Class', 'CLA-Class'],
-    ['clkclass', 'CLK-Class', 'CLK-Class'],
-    ['clsclass', 'CLS-Class', 'CLS-Class'],
-    ['eclass', 'E-Class', 'E-Class'],
-    ['gclass', 'G-Class', 'G-Class'],
-    ['glclass', 'GL-Class', 'GL-Class'],
-    ['glaclass', 'GLA-Class', 'GLA-Class'],
-    ['glcclass', 'GLC-Class', 'GLC-Class'],
-    ['gleclass', 'GLE-Class', 'GLE-Class'],
-    ['glkclass', 'GLK-Class', 'GLK-Class'],
-    ['glsclass', 'GLS-Class', 'GLS-Class'],
-    ['mclass', 'M-class', 'M-class'],
+    ['cclass', 'C클래스', 'C-Class'],
+    ['clclass', 'CL', 'CL-Class'],
+    ['claclass', 'CLA', 'CLA-Class'],
+    ['clkclass', 'CLK', 'CLK-Class'],
+    ['clsclass', 'CLS', 'CLS-Class'],
+    ['eclass', 'E클래스', 'E-Class'],
+    ['gclass', 'G클래스', 'G-Class'],
+    ['glclass', 'GL', 'GL-Class'],
+    ['glaclass', 'GLA', 'GLA-Class'],
+    ['glcclass', 'GLC', 'GLC-Class'],
+    ['gleclass', 'GLE', 'GLE-Class'],
+    ['glkclass', 'GLK', 'GLK-Class'],
+    ['glsclass', 'GLS', 'GLS-Class'],
+    ['mclass', 'M클래스', 'M-Class'],
     ['myb', 'My B', 'My B'],
-    ['rclass', 'R-Class', 'R-Class'],
-    ['sclass', 'S-Class', 'S-Class'],
+    ['rclass', 'R클래스', 'R-Class'],
+    ['sclass', 'S클래스', 'S-Class'],
     ['selsec', 'SEL-SEC', 'SEL-SEC'],
-    ['slclass', 'SL-Class', 'SL-Class'],
-    ['slcclass', 'SLC-Class', 'SLC-Class'],
-    ['slkclass', 'SLK-Class', 'SLK-Class'],
+    ['slclass', 'SL', 'SL-Class'],
+    ['slcclass', 'SLC', 'SLC-Class'],
+    ['slkclass', 'SLK', 'SLK-Class'],
     ['slr', 'SLR', 'SLR'],
     ['slsamg', 'SLS AMG', 'SLS AMG'],
     ['sprinter', 'Sprinter', 'Sprinter'],
-    ['vclass', 'V-Class', 'V-Class'],
+    ['vclass', 'V클래스', 'V-Class'],
   ],
   mini:[
     ['clubman', 'Clubman', 'Clubman'],
@@ -1338,14 +1373,7 @@ function goView(v){
   window.scrollTo(0,0);
   if(v==='favs') renderFavs();
 }
-function setMode(m){
-  STATE.mode=m;
-  document.getElementById('pAI').classList.toggle('on', m==='ai');
-  document.getElementById('pST').classList.toggle('on', m==='struct');
-  document.getElementById('aiWrap').style.display  = m==='ai'?'block':'none';
-  document.getElementById('orDiv').style.display   = 'none';
-  document.getElementById('stWrap').classList.toggle('on', m==='struct');
-}
+// setMode removed — unified single search page (AI mini-bar + filter form always visible)
 // setMkt removed — car_type auto-detected from manufacturer
 
 function onMakerChange(){
@@ -1464,7 +1492,6 @@ function showParsed(p){
 //  STRUCTURED SEARCH
 // ══════════════════════════════════════════════════════════
 function runSearch(){
-  if(STATE.mode==='ai'){runAI();return;}
   const mk  = document.getElementById('fMaker').value;
   const mdl = document.getElementById('fModel').value;
 
@@ -1693,7 +1720,9 @@ function parseCar(c){
     // Убираем номер и расширение из конца, генерируем 1-8
     const base = photoBase.replace(/_\d{3}\.jpg.*$/i, '');
     for(let i=1;i<=8;i++){
-      photos.push(`${base}_${String(i).padStart(3,'0')}.jpg`);
+      const raw = `${base}_${String(i).padStart(3,'0')}.jpg`;
+      // wsrv.nl proxy — обходит CORS/referrer блокировку ci.encar.com
+      photos.push(`https://wsrv.nl/?url=${raw.replace('https://','')}`);
     }
   }
   // Тип привода из BadgeDetail или Badge
@@ -1883,7 +1912,8 @@ async function loadPhotos(id){
     const baseUrl = `https://ci.encar.com/carpicture/carpicture10/pic${picFolder}`;
     const photos = [];
     for(let i=1;i<=8;i++){
-      photos.push(`${baseUrl}/${id}_${String(i).padStart(3,'0')}.jpg`);
+      const raw = `${baseUrl}/${id}_${String(i).padStart(3,'0')}.jpg`;
+      photos.push(`https://wsrv.nl/?url=${raw.replace('https://','')}`);
     }
     PHOTOS[id] = { idx:0, list: photos };
     renderPhotos(id, photos);
