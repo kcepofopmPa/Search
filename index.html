@@ -1718,11 +1718,9 @@ function parseCar(c){
     const photoBase = 'https://ci.encar.com' + photoField;
     const base = photoBase.replace(/_\d{3}\.jpg.*$/i, '');
     for(let i=1;i<=8;i++){
-      const raw = `${base}_${String(i).padStart(3,'0')}.jpg`;
-      photos.push(`https://wsrv.nl/?url=${raw.replace('https://','')}`);
+      photos.push(`${base}_${String(i).padStart(3,'0')}.jpg`);
     }
-    // Thumbnail for immediate display — first photo via wsrv.nl proxy
-    thumbnail = `https://wsrv.nl/?url=ci.encar.com${photoField.replace(/\?.*$/, '')}`;
+    thumbnail = photos[0];
   }
   // Тип привода из BadgeDetail или Badge
   const badgeRaw = c.Badge||'';
@@ -1853,7 +1851,7 @@ function makeCard(c, idx, src){
   const fuelIco=c.fuel==='전기'?'bolt':c.fuel==='가솔린+전기'?'ev_station':'local_gas_station';
   div.innerHTML=`
     <div class="sl" id="sl-${c.id}" data-car-id="${c.id}" onclick="loadPhotos('${c.id}')">
-      <div class="sl-ph" id="slPH-${c.id}">${c.thumbnail?`<img src="${c.thumbnail}" loading="lazy" onerror="this.style.display='none'">`:'🚗'}</div>
+      <div class="sl-ph" id="slPH-${c.id}">${c.thumbnail?`<img src="${c.thumbnail}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">`:'🚗'}</div>
       <div class="sl-track" id="slT-${c.id}" style="display:none"></div>
       <button class="sl-btn p" id="slP-${c.id}" onclick="event.stopPropagation();slide('${c.id}',-1)" style="display:none">‹</button>
       <button class="sl-btn n" id="slN-${c.id}" onclick="event.stopPropagation();slide('${c.id}',1)"  style="display:none">›</button>
@@ -1919,7 +1917,7 @@ function renderPhotos(id,photos){
   const track=document.getElementById(`slT-${id}`);
   const dots =document.getElementById(`slD-${id}`);
   document.getElementById(`slPH-${id}`).style.display='none';
-  track.innerHTML=photos.map(u=>`<div class="sl-item"><img src="${u}" loading="lazy" onerror="this.parentElement.style.background='var(--s2)';this.style.display='none'"></div>`).join('');
+  track.innerHTML=photos.map(u=>`<div class="sl-item"><img src="${u}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.style.background='var(--s2)';this.style.display='none'"></div>`).join('');
   dots.innerHTML =photos.map((_,i)=>`<div class="sd ${i===0?'on':''}" id="sd-${id}-${i}"></div>`).join('');
   track.style.display='flex';
   track.style.transform='translateX(0)';
