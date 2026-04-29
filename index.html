@@ -1711,19 +1711,18 @@ async function doSearch(p){
 
 function parseCar(c){
   const pmw=c.Price||0, yr=String(c.Year||'000000');
-  // Encar API поле Photo содержит путь к первому фото
-  // Формат: /carpicture/carpicture10/pic1234/12345678_001.jpg
   const photoField = c.Photo || c.photo || null;
   const photos = [];
+  let thumbnail = '';
   if(photoField){
     const photoBase = 'https://ci.encar.com' + photoField;
-    // Убираем номер и расширение из конца, генерируем 1-8
     const base = photoBase.replace(/_\d{3}\.jpg.*$/i, '');
     for(let i=1;i<=8;i++){
       const raw = `${base}_${String(i).padStart(3,'0')}.jpg`;
-      // wsrv.nl proxy — обходит CORS/referrer блокировку ci.encar.com
       photos.push(`https://wsrv.nl/?url=${raw.replace('https://','')}`);
     }
+    // Thumbnail for immediate display — first photo via wsrv.nl proxy
+    thumbnail = `https://wsrv.nl/?url=ci.encar.com${photoField.replace(/\?.*$/, '')}`;
   }
   // Тип привода из BadgeDetail или Badge
   const badgeRaw = c.Badge||'';
@@ -1760,6 +1759,7 @@ function parseCar(c){
     usd:          Math.round(pmw*10000/1340),
     rub:          Math.round(pmw*10000*(CFG.krw||0.0675)),
     photos:       photos,
+    thumbnail,
     ai:           '',
   };
 }
@@ -1825,6 +1825,24 @@ function renderCars(cars){
   l.innerHTML=''; l.style.display='block';
   cars.forEach((c,i)=>l.appendChild(makeCard(c,i,'results')));
   buildBadgeFilter(cars);
+  autoLoadVisiblePhotos();
+}
+
+function autoLoadVisiblePhotos(){
+  if(!('IntersectionObserver' in window)){
+    STATE.results.slice(0,10).forEach(c=>loadPhotos(c.id));
+    return;
+  }
+  const obs = new IntersectionObserver((entries,o)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const id=e.target.dataset.carId;
+        if(id) loadPhotos(id);
+        o.unobserve(e.target);
+      }
+    });
+  },{rootMargin:'400px'});
+  document.querySelectorAll('[data-car-id]').forEach(el=>obs.observe(el));
 }
 
 function makeCard(c, idx, src){
@@ -1834,8 +1852,8 @@ function makeCard(c, idx, src){
   const milK=(c.mileage_km/1000).toFixed(0);
   const fuelIco=c.fuel==='전기'?'bolt':c.fuel==='가솔린+전기'?'ev_station':'local_gas_station';
   div.innerHTML=`
-    <div class="sl" id="sl-${c.id}" onclick="loadPhotos('${c.id}')">
-      <div class="sl-ph" id="slPH-${c.id}">${c.thumbnail?`<img src="${c.thumbnail}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">`:'🚗'}</div>
+    <div class="sl" id="sl-${c.id}" data-car-id="${c.id}" onclick="loadPhotos('${c.id}')">
+      <div class="sl-ph" id="slPH-${c.id}">${c.thumbnail?`<img src="${c.thumbnail}" loading="lazy" onerror="this.style.display='none'">`:'🚗'}</div>
       <div class="sl-track" id="slT-${c.id}" style="display:none"></div>
       <button class="sl-btn p" id="slP-${c.id}" onclick="event.stopPropagation();slide('${c.id}',-1)" style="display:none">‹</button>
       <button class="sl-btn n" id="slN-${c.id}" onclick="event.stopPropagation();slide('${c.id}',1)"  style="display:none">›</button>
@@ -1885,49 +1903,23 @@ function makeCard(c, idx, src){
 //  PHOTOS
 // ══════════════════════════════════════════════════════════
 async function loadPhotos(id){
-  // Уже загружены — просто показываем
   if(PHOTOS[id]){ renderPhotos(id, PHOTOS[id].list); return; }
-  // Race condition guard — не запускаем повторный запрос
-  if(PHOTOS[id] === null) return;
-  PHOTOS[id] = null; // loading flag
-
-  document.getElementById(`slPH-${id}`).textContent = '⏳';
-
-  // Сначала проверяем фото из API-ответа (поле Photo)
+  // Photo ID ≠ Car ID on Encar — only the API Photo field has the correct path.
+  // No ID-based fallback: it would build wrong URLs.
   const car = STATE.results.find(c=>c.id===id) || Object.values(STATE.favs).find(c=>c.id===id);
-  if(car && car.photos && car.photos.length){
-    PHOTOS[id] = { idx:0, list: car.photos };
-    renderPhotos(id, car.photos);
+  if(!car || !car.photos || !car.photos.length){
+    document.getElementById(`slPH-${id}`).textContent = '📷';
     return;
   }
-
-  // Fallback: строим URL по ID авто
-  // Формат Encar: carpicture10/pic{xxxx}/{id}_001.jpg
-  // где xxxx = первые 4 цифры из Math.floor(carId/10)*10, padded to 7
-  try{
-    const carNum = parseInt(id);
-    // Папка: берём миллионы/сотни тысяч из ID
-    const folderNum = Math.floor(carNum / 10000) * 10000;
-    const picFolder = String(folderNum).padStart(8,'0').slice(0,4);
-    const baseUrl = `https://ci.encar.com/carpicture/carpicture10/pic${picFolder}`;
-    const photos = [];
-    for(let i=1;i<=8;i++){
-      const raw = `${baseUrl}/${id}_${String(i).padStart(3,'0')}.jpg`;
-      photos.push(`https://wsrv.nl/?url=${raw.replace('https://','')}`);
-    }
-    PHOTOS[id] = { idx:0, list: photos };
-    renderPhotos(id, photos);
-  }catch(e){
-    document.getElementById(`slPH-${id}`).textContent = '📷';
-    toast('❌ Ошибка загрузки фото');
-  }
+  PHOTOS[id] = { idx:0, list: car.photos };
+  renderPhotos(id, car.photos);
 }
 
 function renderPhotos(id,photos){
   const track=document.getElementById(`slT-${id}`);
   const dots =document.getElementById(`slD-${id}`);
   document.getElementById(`slPH-${id}`).style.display='none';
-  track.innerHTML=photos.map(u=>`<div class="sl-item"><img src="${u}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.style.background='var(--s2)';this.style.display='none'"></div>`).join('');
+  track.innerHTML=photos.map(u=>`<div class="sl-item"><img src="${u}" loading="lazy" onerror="this.parentElement.style.background='var(--s2)';this.style.display='none'"></div>`).join('');
   dots.innerHTML =photos.map((_,i)=>`<div class="sd ${i===0?'on':''}" id="sd-${id}-${i}"></div>`).join('');
   track.style.display='flex';
   track.style.transform='translateX(0)';
