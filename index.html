@@ -1716,8 +1716,9 @@ function parseCar(c){
   let thumbnail = '';
   if(photoField){
     const photoBase = 'https://ci.encar.com/carpicture' + photoField;
-    // _+ handles rare double-underscore in API Photo field (e.g. 41738916__001.jpg)
-    const base = photoBase.replace(/_+\d{3}\.jpg.*$/i, '');
+    // Strip _NNN.jpg suffix (with any number of leading underscores) OR bare trailing underscores.
+    // API Photo field may arrive as "41781201_001.jpg", "41781201__001.jpg", or just "41781201_".
+    const base = photoBase.replace(/(_+\d{3}\.jpg.*|_+)$/i, '');
     for(let i=1;i<=8;i++){
       photos.push(`${base}_${String(i).padStart(3,'0')}.jpg`);
     }
