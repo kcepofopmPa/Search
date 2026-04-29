@@ -1716,11 +1716,13 @@ function parseCar(c){
   let thumbnail = '';
   if(photoField){
     const photoBase = 'https://ci.encar.com/carpicture' + photoField;
-    const base = photoBase.replace(/_\d{3}\.jpg.*$/i, '');
+    // _+ handles rare double-underscore in API Photo field (e.g. 41738916__001.jpg)
+    const base = photoBase.replace(/_+\d{3}\.jpg.*$/i, '');
     for(let i=1;i<=8;i++){
       photos.push(`${base}_${String(i).padStart(3,'0')}.jpg`);
     }
-    thumbnail = photos[0];
+    // Thumbnail: small crop + small brand watermark (suppresses the full-size watermark)
+    thumbnail = photos[0] + '?impolicy=heightRate&rh=384&cw=640&ch=384&cg=Center&wtmk=https://ci.encar.com/wt_mark/w_mark_04.png';
   }
   // Тип привода из BadgeDetail или Badge
   const badgeRaw = c.Badge||'';
