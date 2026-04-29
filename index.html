@@ -1715,7 +1715,7 @@ function parseCar(c){
   const photos = [];
   let thumbnail = '';
   if(photoField){
-    const photoBase = 'https://ci.encar.com' + photoField;
+    const photoBase = 'https://ci.encar.com/carpicture' + photoField;
     const base = photoBase.replace(/_\d{3}\.jpg.*$/i, '');
     for(let i=1;i<=8;i++){
       photos.push(`${base}_${String(i).padStart(3,'0')}.jpg`);
